@@ -19,6 +19,6 @@ public class HelloWorldController {
     @GetMapping("/hello")
     public String helloWorld() {
         eventRepository.save(new Event(UUID.randomUUID().toString()));
-        return "Hello World!";
+        return "Hello World";
     }
 }
