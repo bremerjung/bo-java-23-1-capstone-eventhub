@@ -9,11 +9,15 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>de.neuefische</groupId>
-	<artifactId>backend</artifactId>
+	<artifactId>bo-java-23-1-capstone-eventhub-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>backend</name>
-	<description>backend</description>
+	<name>bo-java-23-1-capstone-eventhub-backend</name>
+	<description>bo-java-23-1-capstone-eventhub-backend</description>
 	<properties>
+		<properties>
+			<sonar.organization>bremerjung</sonar.organization>
+			<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		</properties>
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
