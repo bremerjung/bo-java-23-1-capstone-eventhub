@@ -16,7 +16,7 @@ public class Event {
     private Instant start;
     private Instant end;
     private String location;
-    private String category;
+    private EventCategory category;
     private String creator;
-    private String status;
+    private EventStatus status;
 }
