@@ -10,7 +10,7 @@ type Props ={
 function EventGallery(props:Props) {
 
     return (
-        <div className="event-gallery-gallery">
+        <div className="event-gallery">
             {props.events.map((currentEvent:EventModel)=>{
                 return <EventCard key={currentEvent.id} event={currentEvent}></EventCard>
             })
