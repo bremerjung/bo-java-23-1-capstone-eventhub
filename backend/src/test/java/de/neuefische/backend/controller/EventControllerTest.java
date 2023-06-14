@@ -165,7 +165,7 @@ class EventControllerTest {
                             "creator": "Creator 2",
                             "status": "APPROVED"
                         }
-                        """.formatted(addedEvent.getId())));
+                        """));
     }
 
     @Test

@@ -28,6 +28,8 @@ public class EventController {
                 .category(event.getCategory())
                 .creator(event.getCreator())
                 .status(event.getStatus())
+                .source(event.getSource())
+                .imageUrl(event.getImageUrl())
                 .build();
         return eventService.saveEvent(newEvent);
     }
@@ -53,6 +55,8 @@ public class EventController {
                 .category(event.getCategory())
                 .creator(event.getCreator())
                 .status(event.getStatus())
+                .source(event.getSource())
+                .imageUrl(event.getImageUrl())
                 .build();
         return eventService.updateEvent(id, updatedEvent);
     }
