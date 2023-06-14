@@ -42,9 +42,6 @@
     justify-content: center;
     background-size: cover;
 }
-.card-back:hover{
-    transform: translateY(-5px);
-}
 
 .card-back:hover {
     transform: translateY(-5px);
