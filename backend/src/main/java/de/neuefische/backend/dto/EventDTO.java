@@ -1,19 +1,13 @@
-package de.neuefische.backend.model;
+package de.neuefische.backend.dto;
 
-import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import de.neuefische.backend.model.EventCategory;
+import de.neuefische.backend.model.EventStatus;
+import lombok.Data;
 
 import java.time.Instant;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@With
-@Document("events")
-public class Event {
-    @Id
+public class EventDTO {
     private String id;
     private String title;
     private String description;
