@@ -8,6 +8,7 @@ function App() {
 
     const {getAllEvents, events} = useEvent();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {getAllEvents()}, [])
 
     return (
