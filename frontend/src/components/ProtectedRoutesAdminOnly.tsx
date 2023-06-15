@@ -8,7 +8,7 @@ type Props = {
 
 function ProtectedRoutesAdminOnly(props: Props) {
 
-    const authenticated = props.user !== undefined && props.user.roles.includes("admin");
+    const authenticated = props.user?.roles?.includes("admin");
 
 
     return (

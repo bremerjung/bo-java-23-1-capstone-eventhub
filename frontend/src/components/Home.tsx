@@ -1,6 +1,7 @@
 import React, {ChangeEvent, FormEvent, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import './Home.css';
+import {toast} from "react-toastify";
 
 type Props = {
     login: (username: string, password: string) => Promise<void>,
@@ -24,12 +25,16 @@ function Home(props:Props) {
             props.login(username, password)
                 .then(() => {
                     navigate("/gallery");
-                });
+                }).catch((error) => {
+                toast.error(error.message || "Login failed");
+            });
         } else if (buttonType === ButtonType.Register) {
             props.register(username, password)
                 .then(() => {
                     navigate("/");
-                });
+                }).catch((error) => {
+                toast.error(error.message || "Registration failed");
+            });
         }
     }
 

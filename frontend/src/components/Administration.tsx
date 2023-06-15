@@ -10,7 +10,7 @@ function Administration(props:Props) {
         <div>
             <h1>ADMIN VIEW</h1>
             <h2>only administrators can see this</h2>
-            {props.events.map((currentEvent:EventModel) => {return <li>{currentEvent.title}</li>})}
+            {props.events.map((currentEvent:EventModel) => {return <li key={currentEvent.id}>{currentEvent.title}</li>})}
         </div>
     );
 }
