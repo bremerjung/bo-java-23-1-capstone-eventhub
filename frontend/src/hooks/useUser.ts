@@ -28,8 +28,8 @@ export default function useUser() {
             })
             .catch((error) => {
                 const message =
-                    "Login failed" + " " + error?.response?.data?.message;
-                toast.error(message);
+                    error?.response?.data?.message;
+                toast.error(`Login failed: ${message}`);
             });
     }
 
@@ -41,8 +41,8 @@ export default function useUser() {
             })
             .catch((error) => {
                 const message =
-                    "Logout failed" + " " + error?.response?.data?.message;
-                toast.error(message);
+                    error?.response?.data?.message;
+                toast.error(`Logout failed: ${message}`);
             });
     }
 
