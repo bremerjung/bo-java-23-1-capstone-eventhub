@@ -10,6 +10,7 @@ function AddEvent(props:Props) {
         <div>
             <h1>ADD EVENTS VIEW</h1>
             <h2>only organizers and administrators can see this</h2>
+            {props.events.map((currentEvent:EventModel) => {return <li>{currentEvent.title}</li>})}
         </div>
     );
 }
