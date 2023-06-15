@@ -12,7 +12,7 @@ function ProtectedRoutesAdminAndEditor(props: Props) {
 
 
     return (
-        authenticated ? <Outlet/> : <Navigate to={"/"}/>
+        authenticated ? <Outlet/> : <Navigate to={"/gallery"}/>
     );
 }
 

@@ -11,7 +11,7 @@ function ProtectedRoutesAdminAndOrganizer(props: Props) {
     const authenticated = props.user !== undefined && (props.user.roles.includes("admin") || props.user.roles.includes("organizer"));
 
     return (
-        authenticated ? <Outlet/> : <Navigate to={"/"}/>
+        authenticated ? <Outlet/> : <Navigate to={"/gallery"}/>
     );
 }
 
