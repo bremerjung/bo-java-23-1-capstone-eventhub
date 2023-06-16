@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -18,6 +21,36 @@
   min-height: 20vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Rechtsbündige Ausrichtung */
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+#logout-button {
+  align-self: flex-end;
+}
+
+#nav-links {
+  display: flex;
+  color:white;
+  background-color: white;
+}
+
+.nav-link {
+  margin: 5px;
+}
+
+.App-main {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.App-footer {
+  margin-top: auto;
+  background-color: #282c34;
+  max-height: 10vh;
+  display: flex;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);

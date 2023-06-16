@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -24,6 +26,7 @@ class EventControllerTest {
 
     @Test
     @DirtiesContext
+    @WithMockUser
     void testAddEvent_whenAddEvent_returnEventWithId_andStatusCode200() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
                         .contentType("application/json")
@@ -38,7 +41,8 @@ class EventControllerTest {
                                         "creator": "Creator",
                                         "status": "NEW"
                                 }
-                                """))
+                                """)
+                        .with(csrf()))
                 .andExpect(status().is(201));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/event"))
@@ -62,6 +66,7 @@ class EventControllerTest {
 
     @Test
     @DirtiesContext
+    @WithMockUser
     void testGetAllEvents_whenGetAllEvents_returnEmptyEventList_andStatusCode200() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/event"))
                 .andExpect(status().isOk())
@@ -70,6 +75,7 @@ class EventControllerTest {
 
     @Test
     @DirtiesContext
+    @WithMockUser
     void testGetEventById_whenGetEventById_thenReturn200OK_returnCorrectEvent() throws Exception {
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -84,7 +90,8 @@ class EventControllerTest {
                                         "creator": "Creator",
                                         "status": "NEW"
                                 }
-                                """))
+                                """)
+                        .with(csrf()))
                 .andExpect(status().is(201))
                 .andReturn();
 
@@ -112,6 +119,7 @@ class EventControllerTest {
 
     @Test
     @DirtiesContext
+    @WithMockUser
     void testUpdateEvent() throws Exception {
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -126,7 +134,8 @@ class EventControllerTest {
                                         "creator": "Creator",
                                         "status": "NEW"
                                 }
-                                """))
+                                """)
+                        .with(csrf()))
                 .andExpect(status().is(201))
                 .andReturn();
 
@@ -149,7 +158,8 @@ class EventControllerTest {
                                         "creator": "Creator 2",
                                         "status": "APPROVED"
                                 }
-                                """))
+                                """)
+                        .with(csrf()))
                 .andExpect(status().isOk());
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/event/" + addedEvent.getId()))
@@ -170,6 +180,7 @@ class EventControllerTest {
 
     @Test
     @DirtiesContext
+    @WithMockUser
     void deleteEvent() throws Exception {
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -184,7 +195,8 @@ class EventControllerTest {
                                         "creator": "Creator",
                                         "status": "NEW"
                                 }
-                                """))
+                                """)
+                        .with(csrf()))
                 .andExpect(status().is(201))
                 .andReturn();
 
@@ -194,7 +206,7 @@ class EventControllerTest {
         objectMapper.registerModule(new JavaTimeModule());
         Event addedEvent = objectMapper.readValue(content, Event.class);
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/event/" + addedEvent.getId()))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/event/" + addedEvent.getId()).with(csrf()))
                 .andExpect(status().isOk());
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/event/" + addedEvent.getId()))
