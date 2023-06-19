@@ -1,44 +1,68 @@
-[{
-  "_id": "1",
-  "username": "admin@event.hub",
-  "password": "$argon2id$v=19$m=16384,t=2,p=1$Z0hpxZ8UBgDC6QLxG2QtTA$SDZZlK2nbHCWBHFgHu5TJcD0jjRQ7PWDzPXJRhIquFY",
-  "roles": [
-    {
-      "role": "admin"
-    }
-  ],
-  "_class": "de.neuefische.backend.model.EventHubUser"
-},
-{
-  "_id": "2",
-  "username": "organizer@event.hub",
-  "password": "$argon2id$v=19$m=16384,t=2,p=1$FwD7nPZvnbxUzPMb94sZxg$qdZUaR/OMZ8aQKEJbPUZxV/3wOk77uFpaayfYtIuo/Y",
-  "roles": [
-    {
-      "role": "organizer"
-    }
-  ],
-  "_class": "de.neuefische.backend.model.EventHubUser"
-},
-{
-  "_id": "3",
-  "username": "editor@event.hub",
-  "password": "$argon2id$v=19$m=16384,t=2,p=1$FZWd9zGHHzUe3u7wIAEXWw$V4KxHAocc+whBXWSc81N6kVVoy1h0tkXvFnFs4M2UtM",
-  "roles": [
-    {
-      "role": "editor"
-    }
-  ],
-  "_class": "de.neuefische.backend.model.EventHubUser"
-},
-{
-  "_id": "4",
-  "username": "user@event.hub",
-  "password": "$argon2id$v=19$m=16384,t=2,p=1$UC97G/GN9fW91opj9aXugA$TPb+IIzn5R34fEqyXjBIodjo18o6Fz68Y3B/s/+gh44",
-  "roles": [
-    {
-      "role": "user"
-    }
-  ],
-  "_class": "de.neuefische.backend.model.EventHubUser"
-}]
+[
+  {
+    "_id": "1",
+    "username": "admin@event.hub",
+    "password": "$argon2id$v=19$m=16384,t=2,p=1$Z0hpxZ8UBgDC6QLxG2QtTA$SDZZlK2nbHCWBHFgHu5TJcD0jjRQ7PWDzPXJRhIquFY",
+    "roles": [
+      {
+        "role": "admin"
+      }
+    ],
+    "_class": "de.neuefische.backend.model.EventHubUser"
+  },
+  {
+    "_id": "2",
+    "username": "organizer@event.hub",
+    "password": "$argon2id$v=19$m=16384,t=2,p=1$FwD7nPZvnbxUzPMb94sZxg$qdZUaR/OMZ8aQKEJbPUZxV/3wOk77uFpaayfYtIuo/Y",
+    "roles": [
+      {
+        "role": "organizer"
+      }
+    ],
+    "_class": "de.neuefische.backend.model.EventHubUser"
+  },
+  {
+    "_id": "3",
+    "username": "editor@event.hub",
+    "password": "$argon2id$v=19$m=16384,t=2,p=1$FZWd9zGHHzUe3u7wIAEXWw$V4KxHAocc+whBXWSc81N6kVVoy1h0tkXvFnFs4M2UtM",
+    "roles": [
+      {
+        "role": "editor"
+      }
+    ],
+    "_class": "de.neuefische.backend.model.EventHubUser"
+  },
+  {
+    "_id": "4",
+    "username": "user@event.hub",
+    "password": "$argon2id$v=19$m=16384,t=2,p=1$UC97G/GN9fW91opj9aXugA$TPb+IIzn5R34fEqyXjBIodjo18o6Fz68Y3B/s/+gh44",
+    "roles": [
+      {
+        "role": "user"
+      }
+    ],
+    "_class": "de.neuefische.backend.model.EventHubUser"
+  },
+  {
+    "_id": "5",
+    "username": "organizer2@event.hub",
+    "password": "$argon2id$v=19$m=16384,t=2,p=1$FwD7nPZvnbxUzPMb94sZxg$qdZUaR/OMZ8aQKEJbPUZxV/3wOk77uFpaayfYtIuo/Y",
+    "roles": [
+      {
+        "role": "organizer"
+      }
+    ],
+    "_class": "de.neuefische.backend.model.EventHubUser"
+  },
+  {
+    "_id": "6",
+    "username": "organizer3@event.hub",
+    "password": "$argon2id$v=19$m=16384,t=2,p=1$FwD7nPZvnbxUzPMb94sZxg$qdZUaR/OMZ8aQKEJbPUZxV/3wOk77uFpaayfYtIuo/Y",
+    "roles": [
+      {
+        "role": "organizer"
+      }
+    ],
+    "_class": "de.neuefische.backend.model.EventHubUser"
+  }
+]

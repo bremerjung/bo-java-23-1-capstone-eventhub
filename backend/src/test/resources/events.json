@@ -6,8 +6,8 @@
     "end": "2023-06-25T23:00:00Z",
     "location": "Knoops Park",
     "category": "MUSIC",
-    "creator": "Peter Mustermann",
-    "status": "NEW",
+    "creator": "organizer@event.hub",
+    "status": "APPROVED",
     "source": "https://www.bremen.de/kultur/veranstaltungen/highlights/sommer-in-lesmona",
     "imageUrl": "https://media.istockphoto.com/id/523871055/de/foto/weibliche-violinists-vorbereitung-klassisches-konzert.jpg?s=2048x2048&w=is&k=20&c=tMs-dzkkJe08obnlTWlJAl_jkjwYsOBnCIZ0Tc5f05M="
   },
@@ -18,8 +18,8 @@
     "end": "2023-06-24T23:59:00Z",
     "location": "Universität Bremen",
     "category": "EDUCATION",
-    "creator": "Peter Mustermann",
-    "status": "NEW",
+    "creator": "organizer@event.hub",
+    "status": "DECLINED",
     "source": "https://www.bremen.de/veranstaltung/open-campus-2023#/",
     "imageUrl": "https://images.freeimages.com/images/large-previews/3db/open-and-read-1413658.jpg"
   },
@@ -30,7 +30,7 @@
     "end": "2023-07-01T23:00:00Z",
     "location": "Marktplatz Bremen",
     "category": "MUSIC",
-    "creator": "Peter Mustermann",
+    "creator": "organizer2@event.hub",
     "status": "NEW",
     "source": "https://www.bremen.de/veranstaltung/hoeg-citysommerfest-das-open-air-in-bremen-city#/",
     "imageUrl": "https://media.istockphoto.com/id/1370212283/de/foto/menschenmenge-feiert-beim-live-konzert.jpg?s=2048x2048&w=is&k=20&c=NBFD8MQXkDN6ksi0JtTitMbbRpKXYJ14cFQSmNdoPKY="
@@ -42,7 +42,7 @@
     "end": "2023-07-07T22:30:00Z",
     "location": "Seebühne Bremen; AG-Weser-Str. 3, 28237 Bremen",
     "category": "MUSIC",
-    "creator": "Peter Mustermann",
+    "creator": "organizer3@event.hub",
     "status": "NEW",
     "source": "https://www.bremen.de/veranstaltung/david-garrett-trio-iconic-tour-2023-seebuhne-bremen-2023#/",
     "imageUrl": "https://images.freeimages.com/images/large-previews/951/violin-1415547.jpg"
@@ -54,8 +54,8 @@
     "end": "2023-06-21T19:00:00Z",
     "location": "LiteraturKeller",
     "category": "THEATRE",
-    "creator": "Peter Mustermann",
-    "status": "NEW",
+    "creator": "organizer3@event.hub",
+    "status": "DECLINED",
     "source": "https://www.bremen.de/veranstaltung/faust-3#/",
     "imageUrl": "https://images.freeimages.com/images/large-previews/a5f/lonely-chair-1618011.jpg"
   },
@@ -66,8 +66,8 @@
     "end": "2023-06-23T22:00:00Z",
     "location": "Theatersaal Universität Bremen",
     "category": "THEATRE",
-    "creator": "Peter Mustermann",
-    "status": "NEW",
+    "creator": "organizer3@event.hub",
+    "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/geschlossene-gesellschaft#/",
     "imageUrl": "https://images.freeimages.com/images/large-previews/1ef/red-curtain-1203512.jpg"
   },
@@ -78,8 +78,8 @@
     "end": "2023-06-21T22:00:00Z",
     "location": "Hotel Strandlust",
     "category": "SPORTS",
-    "creator": "Peter Mustermann",
-    "status": "NEW",
+    "creator": "organizer3@event.hub",
+    "status": "DECLINED",
     "source": "https://www.bremen.de/veranstaltung/international-yoga-day-2023-yoga-an-der-weser#/",
     "imageUrl": "https://images.freeimages.com/images/large-previews/ffe/meditation-1306234.jpg"
   },
@@ -103,7 +103,7 @@
     "location": "Unser Lieben Frauen Kirchhof",
     "category": "SPORTS",
     "creator": "Peter Mustermann",
-    "status": "NEW",
+    "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/sportscheck-night-run-bremen#/",
     "imageUrl": "https://media.istockphoto.com/id/859932820/de/foto/mann-l%C3%A4uft.jpg?s=2048x2048&w=is&k=20&c=Qztra5Z0pyg56qZ2QNChYXfjHeOlscSf1V0QlHvDxeA="
   },
@@ -114,7 +114,7 @@
     "end": "2023-11-05T00:00:00Z",
     "location": "Übersee-Museum",
     "category": "ARTS",
-    "creator": "Peter Mustermann",
+    "creator": "organizer2@event.hub",
     "status": "NEW",
     "source": "https://www.bremen.de/veranstaltung/american-dreams-bilder-aus-den-usa#/",
     "imageUrl": "https://images.freeimages.com/images/large-previews/d26/vintage-camera-1-1293857.jpg"
@@ -126,8 +126,8 @@
     "end": "2023-07-16T18:00:00Z",
     "location": "Overbeck-Museum",
     "category": "ARTS",
-    "creator": "Peter Mustermann",
-    "status": "NEW",
+    "creator": "organizer2@event.hub",
+    "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/auf-sicht-die-norddeutschen-realisten-malen-in-bremen#/",
     "imageUrl": "https://images.freeimages.com/images/large-previews/a0b/artist-palette-1172456.jpg"
   },
@@ -138,8 +138,8 @@
     "end": "2023-06-29T22:15:00Z",
     "location": "Halle 7",
     "category": "COMEDY",
-    "creator": "Peter Mustermann",
-    "status": "NEW",
+    "creator": "organizer@event.hub",
+    "status": "DECLINED",
     "source": "https://www.bremen.de/veranstaltung/luke-mockridge#/",
     "imageUrl": "https://images.freeimages.com/images/large-previews/325/april-fool-1443289.jpg"
   }
