@@ -1,6 +1,7 @@
 package de.neuefische.backend.service;
 
 import de.neuefische.backend.model.Event;
+import de.neuefische.backend.model.EventCategory;
 import de.neuefische.backend.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,18 @@ public class EventService {
 
     public Event findEventById(String id) {
         return eventRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Event with id " + id + " does not exist"));
+    }
+
+    public List<Event> findEventsByCategory(List<EventCategory> categories) {
+        return eventRepository.findByCategoryIn(categories);
+    }
+
+    public List<Event> findEventsByCreator(String creator) {
+        return eventRepository.findByCreator(creator);
+    }
+
+    public List<Event> findEventsByStatus(String status) {
+        return eventRepository.findByStatus(status);
     }
 
     public Event updateEvent(String id, Event event) {
