@@ -1,16 +1,50 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {EventModel} from "../model/EventModel";
+import {User} from "../model/User";
+import './AddEvent.css';
 
 type Props = {
-    events:EventModel[]
+    user: User,
+    events: EventModel[],
+    getEventsByStatus: () => void,
+    saveEvent: (event: EventModel) => void
+    updateEvent: (id: string, event: EventModel) => void
 }
 
-function ApproveEvent(props:Props) {
+function ApproveEvent(props: Props) {
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(props.getEventsByStatus, []);
+
+    const onApproveHandler = (event: EventModel) => {
+        console.log('Approve button clicked');
+        const approvedEvent: EventModel = {
+            ...event,
+            status: 'APPROVED'
+        };
+        props.updateEvent(event.id, approvedEvent);
+    };
+
+    function onDetailsHandler() {
+        console.log("Details button clicked");
+    }
+
     return (
         <div>
-            <h1>APPROVE EVENTS VIEW</h1>
-            <h2>only editors and administrators can see this</h2>
-            {props.events.map((currentEvent:EventModel) => {return <li key={currentEvent.id}>{currentEvent.title}</li>})}
+            <h1>New events</h1>
+            <h2>Logged in user: {props.user.username}</h2>
+            <h4>(only editors and administrators can see this)</h4>
+            <ul>
+                {props.events.map((currentEvent: EventModel) => (
+                    <li className="list-item" key={currentEvent.id}>
+                        {currentEvent.title}
+                        <div className="buttons">
+                            <button className="button" onClick={onDetailsHandler}>Details</button>
+                            <button className="button" onClick={() => onApproveHandler(currentEvent)}>Approve</button>
+                        </div>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
