@@ -2,10 +2,12 @@ import axios from "axios";
 import {useState} from "react";
 import {User} from "../model/User";
 import {toast} from 'react-toastify';
+import {useNavigate} from "react-router-dom";
 
 export default function useUser() {
 
-    const [user, setUser] = useState<User>()
+    const [user, setUser] = useState<User | undefined>(undefined);
+    const navigate = useNavigate();
 
     function register(username: string, password: string) {
         return axios.post("/api/user/register", {username, password})
@@ -38,6 +40,7 @@ export default function useUser() {
             .then(() => {
                 setUser(undefined)
                 toast.success("Logout successful");
+                navigate("/");
             })
             .catch((error) => {
                 const message =
@@ -46,6 +49,20 @@ export default function useUser() {
             });
     }
 
-    return {register, login, logout, user};
+    function updateUserPreferredCategories(selectedCategories: string[]) {
+        return axios.put("/api/user/update-preferred-categories", {username: user?.username, categories: selectedCategories})
+            .then((response) => {
+                setUser(response.data)
+                toast.success("Preferred categories updated");
+            })
+            .catch((error) => {
+                const message =
+                    error?.response?.data?.message;
+                toast.error(`Update failed: ${message}`);
+            });
+
+    }
+
+    return {user, register, login, logout, updateUserPreferredCategories};
 
 }
