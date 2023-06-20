@@ -1,5 +1,5 @@
 package de.neuefische.backend.model;
 
 public enum EventStatus {
-    NEW, APPROVED, DENIED
+    NEW, APPROVED, DECLINED
 }
