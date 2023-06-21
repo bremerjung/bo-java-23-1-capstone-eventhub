@@ -123,7 +123,10 @@ class UserControllerTest {
                 .andExpect(content().json("""
                         {
                                         "username": "user@event.hub",
-                                        "categories": ["MUSIC", "SPORTS"]
+                                        "roles": [
+                                                "user"
+                                        ],
+                                        "preferredCategories": ["MUSIC", "SPORTS"]
                         }
                         """));
 
@@ -143,7 +146,7 @@ class UserControllerTest {
     @Test
     @DirtiesContext
     @WithMockUser
-    void logout_should_invalidate_session_and_clear_context() throws Exception {
+    void testLogout_should_invalidate_session_and_clear_context() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/user/logout")
                         .with(csrf()))
                 .andExpect(MockMvcResultMatchers.status().is(200));

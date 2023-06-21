@@ -1,5 +1,6 @@
 package de.neuefische.backend.service;
 
+import de.neuefische.backend.dto.EventHubUserDTO;
 import de.neuefische.backend.dto.UserPreferredCategoriesDTO;
 import de.neuefische.backend.model.EventCategory;
 import de.neuefische.backend.model.EventHubUser;
@@ -74,11 +75,11 @@ class EventHubUserDetailServiceTest {
         when(userRepository.findEventHubUserByUsername(username)).thenReturn(Optional.of(user));
 
         // when
-        UserPreferredCategoriesDTO updatedUserPreferredCategories = eventHubUserDetailService.updateUserPreferredCategories(userPreferredCategories);
+        EventHubUserDTO updatedUserPreferredCategories = eventHubUserDetailService.updateUserPreferredCategories(userPreferredCategories);
 
         // then
         assertEquals(username, updatedUserPreferredCategories.getUsername());
-        assertEquals(categories, updatedUserPreferredCategories.getCategories());
+        assertEquals(categories, updatedUserPreferredCategories.getPreferredCategories());
         assertEquals(categories, user.getPreferredCategories());
         verify(userRepository).save(user);
     }
@@ -95,11 +96,11 @@ class EventHubUserDetailServiceTest {
         when(userRepository.findEventHubUserByUsername(username)).thenReturn(Optional.of(user));
 
         // when
-        UserPreferredCategoriesDTO updatedUserPreferredCategories = eventHubUserDetailService.updateUserPreferredCategories(newUserPreferredCategories);
+        EventHubUserDTO updatedUserPreferredCategories = eventHubUserDetailService.updateUserPreferredCategories(newUserPreferredCategories);
 
         // then
         assertEquals(username, updatedUserPreferredCategories.getUsername());
-        assertEquals(newCategories, updatedUserPreferredCategories.getCategories());
+        assertEquals(newCategories, updatedUserPreferredCategories.getPreferredCategories());
         assertEquals(newCategories, user.getPreferredCategories());
         verify(userRepository).save(user);
     }

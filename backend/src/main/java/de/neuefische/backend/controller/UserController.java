@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @PutMapping("/update-preferred-categories")
-    public UserPreferredCategoriesDTO updatePreferredCategories(@RequestBody UserPreferredCategoriesDTO userPreferredCategories) {
+    public EventHubUserDTO updatePreferredCategories(@RequestBody UserPreferredCategoriesDTO userPreferredCategories) {
        return service.updateUserPreferredCategories(userPreferredCategories);
     }
 }

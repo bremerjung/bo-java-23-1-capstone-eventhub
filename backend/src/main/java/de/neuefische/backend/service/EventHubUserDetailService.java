@@ -50,7 +50,7 @@ public class EventHubUserDetailService implements UserDetailsService {
 
         EventHubUser temp = userRepository.save(newUser.withRoles(Collections.singletonList(new SimpleGrantedAuthority("user"))).withPassword(passwordEncoder.encode(user.getPassword())));
         List<String> roles = temp.getRoles().stream().map(SimpleGrantedAuthority::toString).toList();
-        return new EventHubUserDTO(temp.getId(), temp.getUsername(), roles);
+        return new EventHubUserDTO(temp.getId(), temp.getUsername(), roles, temp.getPreferredCategories());
     }
 
     public List<String> getUserPreferredCategories(String username) {
@@ -67,12 +67,12 @@ public class EventHubUserDetailService implements UserDetailsService {
                 .map(EventCategory::toString).toList();
     }
 
-    public UserPreferredCategoriesDTO updateUserPreferredCategories(UserPreferredCategoriesDTO userPreferredCategories) {
+    public EventHubUserDTO updateUserPreferredCategories(UserPreferredCategoriesDTO userPreferredCategories) {
         EventHubUser user = userRepository.findEventHubUserByUsername(userPreferredCategories.getUsername())
                 .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MESSAGE, userPreferredCategories.getUsername())));
         user.setPreferredCategories(userPreferredCategories.getCategories());
         userRepository.save(user);
-        return userPreferredCategories;
+        return new EventHubUserDTO(user.getId(), user.getUsername(), user.getRoles().stream().map(SimpleGrantedAuthority::toString).toList(), user.getPreferredCategories());
     }
 
 }
