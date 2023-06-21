@@ -89,7 +89,44 @@ class UserControllerTest {
     @Test
     @DirtiesContext
     @WithMockUser(username = "user@event.hub")
-    void testLogin_shouldReturn_200_and_userDTO_with_role_user() throws Exception {
+    void testLogin_shouldReturn_200_and_userDTO_with_role_user_and_list_of_preferred_categories() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user/register")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "username": "user@event.hub",
+                                        "password": "123"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201))
+                .andExpect(content().json("""
+                        {
+                                        "username": "user@event.hub",
+                                        "roles": [
+                                                "user"
+                                        ]
+                        }
+                        """))
+                .andExpect(jsonPath("$.id").isNotEmpty());
+
+        mockMvc.perform((MockMvcRequestBuilders.put("/api/user/update-preferred-categories")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "username": "user@event.hub",
+                                        "categories": ["MUSIC", "SPORTS"]
+                                }
+                                """)
+                        .with(csrf())))
+                .andExpect(status().is(200))
+                .andExpect(content().json("""
+                        {
+                                        "username": "user@event.hub",
+                                        "categories": ["MUSIC", "SPORTS"]
+                        }
+                        """));
+
         mockMvc.perform(MockMvcRequestBuilders.post("/api/user/login")
                         .contentType("application/json")
                         .with(csrf()))
@@ -97,7 +134,8 @@ class UserControllerTest {
                 .andExpect(content().json("""
                         {
                                         "username": "user@event.hub",
-                                        "roles": ["ROLE_USER"]
+                                        "roles": ["ROLE_USER"],
+                                        "preferredCategories": ["MUSIC", "SPORTS"]
                         }
                         """));
     }
