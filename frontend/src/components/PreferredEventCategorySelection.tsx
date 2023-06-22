@@ -9,7 +9,7 @@ type Props = {
 }
 
 function PreferredEventCategorySelection(props: Props) {
-    const [selectedCategories, setSelectedCategories] = useState<string[]>(props.user?.preferredCategories || []);
+    const [selectedCategories, setSelectedCategories] = useState<string[]>(props.user?.preferredCategories ?? []);
 
     const isCategorySelected = (category: string) => {
         return selectedCategories.includes(category);

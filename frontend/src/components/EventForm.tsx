@@ -55,7 +55,7 @@ function EventForm(props: Props) {
             end: new Date(startDate + "T" + startTime + ":00"),
             location: location,
             category: category,
-            creator: props.user?.username || "",
+            creator: props.user?.username ?? "",
             status: "NEW",
             source: source,
             imageUrl: ""
