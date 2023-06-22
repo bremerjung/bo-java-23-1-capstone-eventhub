@@ -26,7 +26,6 @@ function AddEvent(props: Props) {
     }, [props.user?.username]);
 
     function onDeleteHandler(event: EventModel) {
-        console.log("Delete button clicked");
         props.deleteEvent(event, () => {
             if (props.user) {
                 props.getEventsByCreator(props.user.username);
@@ -35,7 +34,6 @@ function AddEvent(props: Props) {
     }
 
     function onEditHandler(event: EventModel) {
-        console.log("Edit button clicked");
         setSelectedEvent(event);
         setIsFormVisible(true);
     }

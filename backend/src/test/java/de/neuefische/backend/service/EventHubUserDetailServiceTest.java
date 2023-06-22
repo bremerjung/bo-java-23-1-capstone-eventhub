@@ -73,14 +73,13 @@ class EventHubUserDetailServiceTest {
         List<SimpleGrantedAuthority> roles = List.of(new SimpleGrantedAuthority("ROLE_USER"));
         EventHubUser user = new EventHubUser("1", username, "123", roles, null);
         when(userRepository.findEventHubUserByUsername(username)).thenReturn(Optional.of(user));
+        EventHubUserDTO expectedUser = new EventHubUserDTO("1", username, List.of("ROLE_USER"), categories);
 
         // when
         EventHubUserDTO updatedUserPreferredCategories = eventHubUserDetailService.updateUserPreferredCategories(userPreferredCategories);
 
         // then
-        assertEquals(username, updatedUserPreferredCategories.getUsername());
-        assertEquals(categories, updatedUserPreferredCategories.getPreferredCategories());
-        assertEquals(categories, user.getPreferredCategories());
+        assertEquals(expectedUser, updatedUserPreferredCategories);
         verify(userRepository).save(user);
     }
 

@@ -17,7 +17,7 @@ function PreferredEventCategorySelection(props: Props) {
 
     const handleCategoryChange = (category: string) => {
         if (isCategorySelected(category)) {
-            setSelectedCategories(selectedCategories.filter((cat) => cat !== category));
+            setSelectedCategories(selectedCategories.filter((currentCategory) => currentCategory !== category));
         } else {
             setSelectedCategories([...selectedCategories, category]);
         }

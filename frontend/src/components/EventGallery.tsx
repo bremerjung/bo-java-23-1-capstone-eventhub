@@ -14,12 +14,10 @@ type Props = {
 function EventGallery(props: Props) {
 
     function onAllEventsClickHandler() {
-        console.log("All events clicked");
         props.getAllEvents();
     }
 
     function onMyEventsClickHandler() {
-        console.log("My events clicked");
         if (props.user?.preferredCategories) {
             props.getEventsByCategory(props.user.preferredCategories);
         }

@@ -149,7 +149,7 @@ class UserControllerTest {
     void testLogout_should_invalidate_session_and_clear_context() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/user/logout")
                         .with(csrf()))
-                .andExpect(MockMvcResultMatchers.status().is(200));
+                .andExpect(status().is(200));
         assertNull(httpSession.getAttribute("SPRING_SECURITY_CONTEXT"));
         assertNull(SecurityContextHolder.getContext().getAuthentication());
     }

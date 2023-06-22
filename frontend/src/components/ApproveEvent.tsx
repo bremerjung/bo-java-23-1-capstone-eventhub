@@ -17,7 +17,6 @@ function ApproveEvent(props: Props) {
     useEffect(props.getEventsByStatus, []);
 
     const onApproveHandler = (event: EventModel) => {
-        console.log('Approve button clicked');
         const approvedEvent: EventModel = {
             ...event,
             status: 'APPROVED'
@@ -26,7 +25,6 @@ function ApproveEvent(props: Props) {
     };
 
     function onDetailsHandler() {
-        console.log("Details button clicked");
     }
 
     return (

@@ -48,9 +48,9 @@ public class EventHubUserDetailService implements UserDetailsService {
             throw new IllegalArgumentException("User with username " + user.getUsername() + " already exists");
         }
 
-        EventHubUser temp = userRepository.save(newUser.withRoles(Collections.singletonList(new SimpleGrantedAuthority("user"))).withPassword(passwordEncoder.encode(user.getPassword())));
-        List<String> roles = temp.getRoles().stream().map(SimpleGrantedAuthority::toString).toList();
-        return new EventHubUserDTO(temp.getId(), temp.getUsername(), roles, temp.getPreferredCategories());
+        EventHubUser savedUser = userRepository.save(newUser.withRoles(Collections.singletonList(new SimpleGrantedAuthority("user"))).withPassword(passwordEncoder.encode(user.getPassword())));
+        List<String> roles = savedUser.getRoles().stream().map(SimpleGrantedAuthority::toString).toList();
+        return new EventHubUserDTO(savedUser.getId(), savedUser.getUsername(), roles, savedUser.getPreferredCategories());
     }
 
     public List<String> getUserPreferredCategories(String username) {
@@ -61,18 +61,18 @@ public class EventHubUserDetailService implements UserDetailsService {
 
         if (preferredCategories == null) {
             return Collections.emptyList();
+        } else {
+            return preferredCategories.stream()
+                    .map(EventCategory::toString).toList();
         }
-
-        return user.getPreferredCategories().stream()
-                .map(EventCategory::toString).toList();
     }
 
     public EventHubUserDTO updateUserPreferredCategories(UserPreferredCategoriesDTO userPreferredCategories) {
-        EventHubUser user = userRepository.findEventHubUserByUsername(userPreferredCategories.getUsername())
+        EventHubUser userToUpdate = userRepository.findEventHubUserByUsername(userPreferredCategories.getUsername())
                 .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MESSAGE, userPreferredCategories.getUsername())));
-        user.setPreferredCategories(userPreferredCategories.getCategories());
-        userRepository.save(user);
-        return new EventHubUserDTO(user.getId(), user.getUsername(), user.getRoles().stream().map(SimpleGrantedAuthority::toString).toList(), user.getPreferredCategories());
+        userToUpdate.setPreferredCategories(userPreferredCategories.getCategories());
+        userRepository.save(userToUpdate);
+        return new EventHubUserDTO(userToUpdate.getId(), userToUpdate.getUsername(), userToUpdate.getRoles().stream().map(SimpleGrantedAuthority::toString).toList(), userToUpdate.getPreferredCategories());
     }
 
 }
