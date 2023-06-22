@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {EventModel} from "../model/EventModel";
 import {User} from "../model/User";
 import './AddEvent.css';
+import {useNavigate} from "react-router-dom";
 
 type Props = {
     user: User,
@@ -12,6 +13,7 @@ type Props = {
 }
 
 function ApproveEvent(props: Props) {
+    const navigate = useNavigate();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(props.getEventsByStatus, []);
@@ -24,7 +26,8 @@ function ApproveEvent(props: Props) {
         props.updateEvent(event.id, approvedEvent);
     };
 
-    function onDetailsHandler() {
+    function onDetailsHandler(event: EventModel) {
+        navigate("/events/" + event.id)
     }
 
     return (
@@ -37,7 +40,7 @@ function ApproveEvent(props: Props) {
                     <li className="list-item" key={currentEvent.id}>
                         {currentEvent.title}
                         <div className="buttons">
-                            <button className="button" onClick={onDetailsHandler}>Details</button>
+                            <button className="button" onClick={() => onDetailsHandler(currentEvent)}>Details</button>
                             <button className="button" onClick={() => onApproveHandler(currentEvent)}>Approve</button>
                         </div>
                     </li>

@@ -15,6 +15,7 @@ import ProtectedRoutesAdminAndEditor from "./components/ProtectedRoutesAdminAndE
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import PreferredEventCategorySelection from "./components/PreferredEventCategorySelection";
+import EventDetails from "./components/EventDetails";
 
 function App() {
 
@@ -91,6 +92,7 @@ function App() {
 
                     <Route element={<ProtectedRoutesUser user={user}/>}>
                         <Route path="/gallery" element={<EventGallery user={user} events={events} getAllEvents={getAllEvents} getEventsByCategory={getEventsByCategory}/>}/>
+                        <Route path="/events/:id" element={<EventDetails events={events}/>} />
                         <Route path="/categorySelection"
                                         element={<PreferredEventCategorySelection user={user} categories={categories}
                                                                                   updateUserPreferredCategories={updateUserPreferredCategories}/>}/>
