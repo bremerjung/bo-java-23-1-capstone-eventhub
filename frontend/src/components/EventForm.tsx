@@ -110,16 +110,6 @@ function EventForm(props: Props) {
                     </textarea>
                     </div>
                     <div>
-                        <label htmlFor="startDate">Date </label>
-                        <input type="date" id="startDate" name="startDate" value={startDate}
-                               onChange={onChangeHandlerStartDate} required/>
-                    </div>
-                    <div>
-                        <label htmlFor="startTime">Time </label>
-                        <input type="time" id="startTime" name="startTime" value={startTime}
-                               onChange={onChangeHandlerStartTime} required/>
-                    </div>
-                    <div>
                         <label htmlFor="location">Location </label>
                         <input type="text" id="location" name="location" value={location}
                                onChange={onChangeHandlerLocation} required/>
