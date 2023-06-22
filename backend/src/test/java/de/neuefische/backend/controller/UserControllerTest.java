@@ -11,7 +11,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -89,7 +88,47 @@ class UserControllerTest {
     @Test
     @DirtiesContext
     @WithMockUser(username = "user@event.hub")
-    void testLogin_shouldReturn_200_and_userDTO_with_role_user() throws Exception {
+    void testLogin_shouldReturn_200_and_userDTO_with_role_user_and_list_of_preferred_categories() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user/register")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "username": "user@event.hub",
+                                        "password": "123"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201))
+                .andExpect(content().json("""
+                        {
+                                        "username": "user@event.hub",
+                                        "roles": [
+                                                "user"
+                                        ]
+                        }
+                        """))
+                .andExpect(jsonPath("$.id").isNotEmpty());
+
+        mockMvc.perform((MockMvcRequestBuilders.put("/api/user/update-preferred-categories")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "username": "user@event.hub",
+                                        "categories": ["MUSIC", "SPORTS"]
+                                }
+                                """)
+                        .with(csrf())))
+                .andExpect(status().is(200))
+                .andExpect(content().json("""
+                        {
+                                        "username": "user@event.hub",
+                                        "roles": [
+                                                "user"
+                                        ],
+                                        "preferredCategories": ["MUSIC", "SPORTS"]
+                        }
+                        """));
+
         mockMvc.perform(MockMvcRequestBuilders.post("/api/user/login")
                         .contentType("application/json")
                         .with(csrf()))
@@ -97,7 +136,8 @@ class UserControllerTest {
                 .andExpect(content().json("""
                         {
                                         "username": "user@event.hub",
-                                        "roles": ["ROLE_USER"]
+                                        "roles": ["ROLE_USER"],
+                                        "preferredCategories": ["MUSIC", "SPORTS"]
                         }
                         """));
     }
@@ -105,10 +145,10 @@ class UserControllerTest {
     @Test
     @DirtiesContext
     @WithMockUser
-    void logout_should_invalidate_session_and_clear_context() throws Exception {
+    void testLogout_should_invalidate_session_and_clear_context() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/user/logout")
                         .with(csrf()))
-                .andExpect(MockMvcResultMatchers.status().is(200));
+                .andExpect(status().is(200));
         assertNull(httpSession.getAttribute("SPRING_SECURITY_CONTEXT"));
         assertNull(SecurityContextHolder.getContext().getAuthentication());
     }

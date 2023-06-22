@@ -3,6 +3,8 @@ export type EventModel = {
     title:string,
     description:string,
     start:Date,
+    startDate:string,
+    startTime:string,
     end:Date,
     location:string,
     category:string,

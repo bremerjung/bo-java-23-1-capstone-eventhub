@@ -1,0 +1,46 @@
+.list-item {
+    background-color: #f2f2f2;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-item .buttons .button {
+    margin-left: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    margin-bottom: 0.5em;
+}
+
+input,
+textarea,
+select {
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+
+button {
+    margin: 0.5em;
+    padding: 0.5em 1em;
+    background-color: gray;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}

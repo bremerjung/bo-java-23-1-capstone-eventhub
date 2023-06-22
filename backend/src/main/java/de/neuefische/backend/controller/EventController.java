@@ -2,6 +2,7 @@ package de.neuefische.backend.controller;
 
 import de.neuefische.backend.dto.EventDTO;
 import de.neuefische.backend.model.Event;
+import de.neuefische.backend.model.EventCategory;
 import de.neuefische.backend.service.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,21 @@ public class EventController {
         return eventService.findAllEvents();
     }
 
+    @GetMapping("/byCategories")
+    public List<Event> getEventsByCategories(@RequestParam(value = "categories") List<EventCategory> categories) {
+        return eventService.findEventsByCategory(categories);
+    }
+
+    @GetMapping("/creator/{creator}")
+    public List<Event> getEventsByCreator(@PathVariable String creator) {
+        return eventService.findEventsByCreator(creator);
+    }
+
+    @GetMapping("/status/{status}")
+    public List<Event> getEventsByStatus(@PathVariable String status) {
+        return eventService.findEventsByStatus(status);
+    }
+
     @GetMapping("{id}")
     public Event getEventById(@PathVariable String id) {
         return eventService.findEventById(id);
@@ -64,6 +80,11 @@ public class EventController {
     @DeleteMapping("{id}")
     public void deleteEvent(@PathVariable String id) {
         eventService.deleteEvent(id);
+    }
+
+    @GetMapping("/categories")
+    public EventCategory[] getEventCategories() {
+        return EventCategory.values();
     }
 
 }

@@ -2,19 +2,40 @@ import React from 'react';
 import {EventModel} from "../model/EventModel";
 import EventCard from "./EventCard";
 import './EventGallery.css';
+import {User} from "../model/User";
 
-type Props ={
-    events:EventModel[]
+type Props = {
+    user: User | undefined,
+    events: EventModel[],
+    getAllEvents: () => void,
+    getEventsByCategory: (categories: string[]) => void
 }
 
-function EventGallery(props:Props) {
+function EventGallery(props: Props) {
+
+    function onAllEventsClickHandler() {
+        props.getAllEvents();
+    }
+
+    function onMyEventsClickHandler() {
+        if (props.user?.preferredCategories) {
+            props.getEventsByCategory(props.user.preferredCategories);
+        }
+    }
 
     return (
-        <div className="event-gallery">
-            {props.events.map((currentEvent:EventModel)=>{
-                return <EventCard key={currentEvent.id} event={currentEvent}></EventCard>
-            })
-            }
+        <div>
+            <div>
+                <button onClick={onAllEventsClickHandler}>All events</button>
+                <button onClick={onMyEventsClickHandler}>My events</button>
+            </div>
+            <div className="event-gallery">
+
+                {props.events.map((currentEvent: EventModel) => {
+                    return <EventCard key={currentEvent.id} event={currentEvent}></EventCard>
+                })
+                }
+            </div>
         </div>
     );
 }

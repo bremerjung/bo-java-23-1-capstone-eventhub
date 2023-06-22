@@ -181,7 +181,7 @@ class EventControllerTest {
     @Test
     @DirtiesContext
     @WithMockUser
-    void deleteEvent() throws Exception {
+    void testDeleteEvent() throws Exception {
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
@@ -211,5 +211,369 @@ class EventControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/event/" + addedEvent.getId()))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    void testGetEventsByCategories() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "title": "Title 1",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 1",
+                                        "category": "MUSIC",
+                                        "creator": "Creator",
+                                        "status": "NEW"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "title": "Title 2",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 2",
+                                        "category": "ARTS",
+                                        "creator": "Creator",
+                                        "status": "NEW"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "title": "Title 3",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 3",
+                                        "category": "MUSIC",
+                                        "creator": "Creator",
+                                        "status": "NEW"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "title": "Title 4",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 4",
+                                        "category": "THEATRE",
+                                        "creator": "Creator",
+                                        "status": "NEW"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/event/byCategories?categories=MUSIC,SPORTS,ARTS"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        [
+                             {
+                                        "title": "Title 1",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 1",
+                                        "category": "MUSIC",
+                                        "creator": "Creator",
+                                        "status": "NEW"
+                             },
+                             {
+                                        "title": "Title 2",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 2",
+                                        "category": "ARTS",
+                                        "creator": "Creator",
+                                        "status": "NEW"
+                                },
+                             {
+                                        "title": "Title 3",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 3",
+                                        "category": "MUSIC",
+                                        "creator": "Creator",
+                                        "status": "NEW"
+                             }
+                         ]
+                        """));
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    void testGetEventsByCreator() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "title": "Title 1",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 1",
+                                        "category": "MUSIC",
+                                        "creator": "Creator1",
+                                        "status": "NEW"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "title": "Title 2",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 2",
+                                        "category": "ARTS",
+                                        "creator": "Creator2",
+                                        "status": "NEW"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "title": "Title 3",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 3",
+                                        "category": "MUSIC",
+                                        "creator": "Creator2",
+                                        "status": "NEW"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "title": "Title 4",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 4",
+                                        "category": "THEATRE",
+                                        "creator": "Creator1",
+                                        "status": "NEW"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/event/creator/Creator1"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        [
+                             {
+                                        "title": "Title 1",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 1",
+                                        "category": "MUSIC",
+                                        "creator": "Creator1",
+                                        "status": "NEW"
+                             },
+                             {
+                                        "title": "Title 4",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 4",
+                                        "category": "THEATRE",
+                                        "creator": "Creator1",
+                                        "status": "NEW"
+                                }
+
+                         ]
+                        """));
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    void testGetEventsByStatus() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "title": "Title 1",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 1",
+                                        "category": "MUSIC",
+                                        "creator": "Creator1",
+                                        "status": "NEW"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "title": "Title 2",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 2",
+                                        "category": "ARTS",
+                                        "creator": "Creator2",
+                                        "status": "APPROVED"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "title": "Title 3",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 3",
+                                        "category": "MUSIC",
+                                        "creator": "Creator2",
+                                        "status": "DECLINED"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "title": "Title 4",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 4",
+                                        "category": "THEATRE",
+                                        "creator": "Creator1",
+                                        "status": "NEW"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/event/status/NEW"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        [
+                             {
+                                        "title": "Title 1",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 1",
+                                        "category": "MUSIC",
+                                        "creator": "Creator1",
+                                        "status": "NEW"
+                             },
+                             {
+                                        "title": "Title 4",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 4",
+                                        "category": "THEATRE",
+                                        "creator": "Creator1",
+                                        "status": "NEW"
+                             }
+                         ]
+                        """));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/event/status/APPROVED"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        [
+                             {
+                                        "title": "Title 2",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 2",
+                                        "category": "ARTS",
+                                        "creator": "Creator2",
+                                        "status": "APPROVED"
+                             }
+                         ]
+                        """));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/event/status/DECLINED"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        [
+                             {
+                                        "title": "Title 3",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location 3",
+                                        "category": "MUSIC",
+                                        "creator": "Creator2",
+                                        "status": "DECLINED"
+                             }
+                         ]
+                        """));
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    void testGetEventCategories() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/event/categories"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        [
+                             "MUSIC",
+                             "ARTS",
+                             "THEATRE",
+                             "COMEDY",
+                             "SPORTS",
+                             "EDUCATION",
+                             "OTHER"
+                         ]
+                        """));
     }
 }

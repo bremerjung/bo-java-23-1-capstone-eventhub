@@ -17,4 +17,5 @@ public class EventHubUser {
     private String username;
     private String password;
     private List<SimpleGrantedAuthority> roles;
+    private List<EventCategory> preferredCategories;
 }

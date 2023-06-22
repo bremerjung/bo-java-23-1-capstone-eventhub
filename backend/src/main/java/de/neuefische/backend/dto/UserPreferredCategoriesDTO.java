@@ -1,19 +1,16 @@
 package de.neuefische.backend.dto;
 
+import de.neuefische.backend.model.EventCategory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.With;
 
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@With
-public class UserLoginAndRegistrationDTO {
+public class UserPreferredCategoriesDTO {
     private String username;
-    private String password;
-    private List<String> roles;
-    private List<String> preferredCategories;
+    private List<EventCategory> categories;
 }
