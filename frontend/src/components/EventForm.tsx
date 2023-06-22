@@ -21,7 +21,7 @@ function EventForm(props: Props) {
 
     useEffect(() => {
         if (props.event) {
-            const { title, description, startDate, startTime, location, category, source } = props.event;
+            const {title, description, startDate, startTime, location, category, source} = props.event;
             setTitle(title || '');
             setDescription(description || '');
             setStartDate(startDate || '');
@@ -141,11 +141,6 @@ function EventForm(props: Props) {
                         <label htmlFor="source">Source </label>
                         <input type="url" value={source} onChange={onChangeHandlerSource} required/>
                     </div>
-                    <div>
-                        <label htmlFor="image">Image </label>
-                        <input type="file" id="image" name="image"/>
-                    </div>
-
                     <div>
                         <button type="submit">{props.event ? 'Save' : 'Add'}</button>
                         <button type="button" onClick={props.onClose}>

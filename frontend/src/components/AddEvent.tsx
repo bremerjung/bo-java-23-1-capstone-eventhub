@@ -59,13 +59,15 @@ function AddEvent(props: Props) {
             <h1>My events</h1>
             <h2>Logged in user: {props.user?.username}</h2>
             <h4>(only organizers and administrators can see this)</h4>
-            <EventForm
-                user={props.user}
-                event={selectedEvent}
-                isFormVisible={isFormVisible}
-                onSave={onSaveHandler}
-                onClose={onCloseHandler}
-            />
+            {selectedEvent && (
+                <EventForm
+                    user={props.user}
+                    event={selectedEvent}
+                    isFormVisible={isFormVisible}
+                    onSave={onSaveHandler}
+                    onClose={onCloseHandler}
+                />
+            )}
             <ul>
                 {props.events.map((currentEvent: EventModel) => (
                     <li className="list-item" key={currentEvent.id}>
