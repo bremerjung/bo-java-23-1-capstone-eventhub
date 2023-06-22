@@ -10,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,7 +55,7 @@ class EventHubUserDetailServiceTest {
         // given
         String username = "user@event.hub";
         List<SimpleGrantedAuthority> roles = List.of(new SimpleGrantedAuthority("ROLE_USER"));
-        EventHubUser user = new EventHubUser("1", username, "123", roles, null);
+        EventHubUser user = new EventHubUser("1", username, "123", roles, new ArrayList<>());
         when(userRepository.findEventHubUserByUsername(username)).thenReturn(Optional.of(user));
 
         // when
