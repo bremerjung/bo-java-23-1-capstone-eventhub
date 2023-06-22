@@ -73,14 +73,6 @@ function EventForm(props: Props) {
         setDescription(e.target.value)
     }
 
-    function onChangeHandlerStartDate(e: ChangeEvent<HTMLInputElement>) {
-        setStartDate(e.target.value)
-    }
-
-    function onChangeHandlerStartTime(e: ChangeEvent<HTMLInputElement>) {
-        setStartTime(e.target.value)
-    }
-
     function onChangeHandlerLocation(e: ChangeEvent<HTMLInputElement>) {
         setLocation(e.target.value)
     }
