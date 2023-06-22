@@ -90,10 +90,10 @@ function App() {
                     <Route path={"/"} element={<Home login={login} register={register}/>}/>
 
                     <Route element={<ProtectedRoutesUser user={user}/>}>
-                        {user && <Route path="/gallery" element={<EventGallery user={user} events={events} getAllEvents={getAllEvents} getEventsByCategory={getEventsByCategory}/>}/>}
-                        {user && <Route path="/categorySelection"
+                        <Route path="/gallery" element={<EventGallery user={user} events={events} getAllEvents={getAllEvents} getEventsByCategory={getEventsByCategory}/>}/>
+                        <Route path="/categorySelection"
                                         element={<PreferredEventCategorySelection user={user} categories={categories}
-                                                                                  updateUserPreferredCategories={updateUserPreferredCategories}/>}/>}
+                                                                                  updateUserPreferredCategories={updateUserPreferredCategories}/>}/>
                     </Route>
 
                     <Route element={<ProtectedRoutesAdminOnly user={user}/>}>
@@ -101,10 +101,10 @@ function App() {
                     </Route>
 
                     <Route element={<ProtectedRoutesAdminAndOrganizer user={user}/>}>
-                        {user && <Route path="/add" element={<AddEvent user={user} events={events}
+                        <Route path="/add" element={<AddEvent user={user} events={events}
                                                                        getEventsByCreator={getEventsByCreator}
                                                                        saveEvent={saveEvent} updateEvent={updateEvent}
-                                                                       deleteEvent={deleteEvent}/>}/>}
+                                                                       deleteEvent={deleteEvent}/>}/>
                     </Route>
 
                     <Route element={<ProtectedRoutesAdminAndEditor user={user}/>}>

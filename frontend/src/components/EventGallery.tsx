@@ -5,7 +5,7 @@ import './EventGallery.css';
 import {User} from "../model/User";
 
 type Props = {
-    user: User,
+    user: User | undefined,
     events: EventModel[],
     getAllEvents: () => void,
     getEventsByCategory: (categories: string[]) => void
@@ -20,7 +20,9 @@ function EventGallery(props: Props) {
 
     function onMyEventsClickHandler() {
         console.log("My events clicked");
-        props.getEventsByCategory(props.user.preferredCategories);
+        if (props.user?.preferredCategories) {
+            props.getEventsByCategory(props.user.preferredCategories);
+        }
     }
 
     return (

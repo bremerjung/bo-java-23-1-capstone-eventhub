@@ -5,7 +5,7 @@ import './AddEvent.css';
 import EventForm from "./EventForm";
 
 type Props = {
-    user: User,
+    user: User | undefined,
     events: EventModel[],
     getEventsByCreator: (creator: string) => void,
     saveEvent: (event: EventModel) => void,
@@ -19,13 +19,19 @@ function AddEvent(props: Props) {
     const [selectedEvent, setSelectedEvent] = useState<EventModel | undefined>(undefined);
 
     useEffect(() => {
-        props.getEventsByCreator(props.user.username);
+        if (props.user) {
+            props.getEventsByCreator(props.user.username);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.user.username]);
+    }, [props.user?.username]);
 
     function onDeleteHandler(event: EventModel) {
         console.log("Delete button clicked");
-        props.deleteEvent(event, () => props.getEventsByCreator(props.user.username));
+        props.deleteEvent(event, () => {
+            if (props.user) {
+                props.getEventsByCreator(props.user.username);
+            }
+        });
     }
 
     function onEditHandler(event: EventModel) {
@@ -51,7 +57,7 @@ function AddEvent(props: Props) {
     return (
         <div>
             <h1>My events</h1>
-            <h2>Logged in user: {props.user.username}</h2>
+            <h2>Logged in user: {props.user?.username}</h2>
             <h4>(only organizers and administrators can see this)</h4>
             <EventForm
                 user={props.user}

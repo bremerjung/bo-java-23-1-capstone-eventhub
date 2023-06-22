@@ -3,7 +3,7 @@ import {EventModel} from "../model/EventModel";
 import {User} from "../model/User";
 
 type Props = {
-    user: User,
+    user: User | undefined,
     event: EventModel | undefined,
     isFormVisible: boolean,
     onSave: (event: EventModel) => void,
@@ -22,13 +22,13 @@ function EventForm(props: Props) {
     useEffect(() => {
         if (props.event) {
             const { title, description, startDate, startTime, location, category, source } = props.event;
-            setTitle(title);
-            setDescription(description);
-            setStartDate(startDate);
-            setStartTime(startTime);
-            setLocation(location);
-            setCategory(category);
-            setSource(source);
+            setTitle(title || '');
+            setDescription(description || '');
+            setStartDate(startDate || '');
+            setStartTime(startTime || '');
+            setLocation(location || '');
+            setCategory(category || '');
+            setSource(source || '');
         } else {
             setTitle('');
             setDescription('');
@@ -55,7 +55,7 @@ function EventForm(props: Props) {
             end: new Date(startDate + "T" + startTime + ":00"),
             location: location,
             category: category,
-            creator: props.user.username,
+            creator: props.user?.username || "",
             status: "NEW",
             source: source,
             imageUrl: ""

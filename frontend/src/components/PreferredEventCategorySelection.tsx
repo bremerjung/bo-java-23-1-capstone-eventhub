@@ -3,13 +3,13 @@ import {User} from "../model/User";
 import './PreferredEventCategorySelection.css';
 
 type Props = {
-    user: User,
+    user: User | undefined,
     categories: string[],
     updateUserPreferredCategories: (categories: string[]) => void
 }
 
 function PreferredEventCategorySelection(props: Props) {
-    const [selectedCategories, setSelectedCategories] = useState<string[]>(props.user.preferredCategories);
+    const [selectedCategories, setSelectedCategories] = useState<string[]>(props.user?.preferredCategories || []);
 
     const isCategorySelected = (category: string) => {
         return selectedCategories.includes(category);
@@ -30,7 +30,7 @@ function PreferredEventCategorySelection(props: Props) {
     return (
         <div>
             <h1>Event category selection</h1>
-            <h2>Logged in user: {props.user.username}</h2>
+            <h2>Logged in user: {props.user?.username}</h2>
             <fieldset>
                 <legend>Select the event categories you are interested in:</legend>
                 {props.categories.map((category: string) => {
