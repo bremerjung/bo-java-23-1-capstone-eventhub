@@ -5,7 +5,7 @@ import './AddEvent.css';
 import {useNavigate} from "react-router-dom";
 
 type Props = {
-    user: User,
+    user: User | undefined,
     events: EventModel[],
     getEventsByStatus: () => void,
     saveEvent: (event: EventModel) => void
@@ -33,7 +33,7 @@ function ApproveEvent(props: Props) {
     return (
         <div>
             <h1>New events</h1>
-            <h2>Logged in user: {props.user.username}</h2>
+            <h2>Logged in user: {props.user?.username}</h2>
             <h4>(only editors and administrators can see this)</h4>
             <ul>
                 {props.events.map((currentEvent: EventModel) => (
