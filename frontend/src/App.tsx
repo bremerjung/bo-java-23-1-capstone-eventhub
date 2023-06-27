@@ -16,6 +16,7 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import PreferredEventCategorySelection from "./components/PreferredEventCategorySelection";
 import EventDetails from "./components/EventDetails";
+import {Container, Nav, Navbar} from "react-bootstrap";
 
 function App() {
 
@@ -69,21 +70,24 @@ function App() {
                 theme="dark"
             />
             <header className="App-header">
-                <h1>Event Hub - Die digitale Litfaßsäule</h1>
+                <h3>Event Hub - Die digitale Litfaßsäule</h3>
                 {user !== undefined ? <button id="logout-button" onClick={logout}>Logout</button> : <></>}
                 {areNavLinksVisible && (
-                    <div id="nav-links">
-                        <div className="nav-link">{user !== undefined ?
-                            <Link to="/gallery">Gallery</Link> : <></>}</div>
-                        <div className="nav-link">{user !== undefined ?
-                            <Link to="/administration">Admin Area</Link> : <></>}</div>
-                        <div className="nav-link">{user !== undefined ?
-                            <Link to="/add">Organizer Area</Link> : <></>}</div>
-                        <div className="nav-link">{user !== undefined ?
-                            <Link to="/approve">Editor Area</Link> : <></>}</div>
-                        <div className="nav-link">{user !== undefined ?
-                            <Link to="/categorySelection">Category Selection</Link> : <></>}</div>
-                    </div>
+                    <Navbar bg="dark" variant="dark" expand="sm" collapseOnSelect>
+                        <Container>
+                            <Navbar.Toggle/>
+                            <Navbar.Collapse>
+                                <Nav>
+                                    <Nav.Link as={Link} className="menuLink" to="/gallery">Gallery</Nav.Link>
+                                    <Nav.Link as={Link} className="menuLink" to="/administration">Admin Area</Nav.Link>
+                                    <Nav.Link as={Link} className="menuLink" to="/add">Organizer Area</Nav.Link>
+                                    <Nav.Link as={Link} className="menuLink" to="/approve">Editor Area</Nav.Link>
+                                    <Nav.Link as={Link} className="menuLink" to="/categorySelection">Category
+                                        Selection</Nav.Link>
+                                </Nav>
+                            </Navbar.Collapse>
+                        </Container>
+                    </Navbar>
                 )}
             </header>
             <main className="App-main">
@@ -91,11 +95,13 @@ function App() {
                     <Route path={"/"} element={<Home login={login} register={register}/>}/>
 
                     <Route element={<ProtectedRoutesUser user={user}/>}>
-                        <Route path="/gallery" element={<EventGallery user={user} events={events} getAllEvents={getAllEvents} getEventsByCategory={getEventsByCategory}/>}/>
-                        <Route path="/events/:id" element={<EventDetails events={events}/>} />
+                        <Route path="/gallery"
+                               element={<EventGallery user={user} events={events} getAllEvents={getAllEvents}
+                                                      getEventsByCategory={getEventsByCategory}/>}/>
+                        <Route path="/events/:id" element={<EventDetails events={events}/>}/>
                         <Route path="/categorySelection"
-                                        element={<PreferredEventCategorySelection user={user} categories={categories}
-                                                                                  updateUserPreferredCategories={updateUserPreferredCategories}/>}/>
+                               element={<PreferredEventCategorySelection user={user} categories={categories}
+                                                                         updateUserPreferredCategories={updateUserPreferredCategories}/>}/>
                     </Route>
 
                     <Route element={<ProtectedRoutesAdminOnly user={user}/>}>
@@ -104,16 +110,16 @@ function App() {
 
                     <Route element={<ProtectedRoutesAdminAndOrganizer user={user}/>}>
                         <Route path="/add" element={<AddEvent user={user} events={events}
-                                                                       getEventsByCreator={getEventsByCreator}
-                                                                       saveEvent={saveEvent} updateEvent={updateEvent}
-                                                                       deleteEvent={deleteEvent}/>}/>
+                                                              getEventsByCreator={getEventsByCreator}
+                                                              saveEvent={saveEvent} updateEvent={updateEvent}
+                                                              deleteEvent={deleteEvent}/>}/>
                     </Route>
 
                     <Route element={<ProtectedRoutesAdminAndEditor user={user}/>}>
-                        {user && <Route path="/approve" element={<ApproveEvent user={user} events={events}
-                                                                               getEventsByStatus={getEventsByStatus}
-                                                                               saveEvent={saveEvent}
-                                                                               updateEvent={updateEvent}/>}/>}
+                        <Route path="/approve" element={<ApproveEvent user={user} events={events}
+                                                                      getEventsByStatus={getEventsByStatus}
+                                                                      saveEvent={saveEvent}
+                                                                      updateEvent={updateEvent}/>}/>
                     </Route>
                 </Routes>
             </main>
