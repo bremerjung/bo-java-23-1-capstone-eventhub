@@ -66,8 +66,11 @@ function EventForm(props: Props) {
         };
 
         if (formMode === FormMode.ADD) {
-            props.saveEvent(event)
-                .then(() => handleImageUpload(event.id))
+            axios.post("/api/event", event)
+                .then(response => {
+                    const eventId = response.data.id
+                    handleImageUpload(eventId)
+                })
                 .catch(error => console.log(error.message));
         } else if (formMode === FormMode.EDIT) {
             props.updateEvent(event.id, event)
