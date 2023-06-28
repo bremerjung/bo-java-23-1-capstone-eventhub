@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {EventModel} from "../model/EventModel";
 import {User} from "../model/User";
-import './AddEvent.css';
+import './EventManagement.css';
 import {useNavigate} from "react-router-dom";
 
 type Props = {
