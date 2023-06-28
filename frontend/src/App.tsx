@@ -6,7 +6,7 @@ import EventGallery from "./components/EventGallery";
 import Home from "./components/Home";
 import useUser from "./hooks/useUser";
 import ApproveEvent from "./components/ApproveEvent";
-import AddEvent from "./components/AddEvent";
+import EventManagement from "./components/EventManagement";
 import Administration from "./components/Administration";
 import ProtectedRoutesUser from "./components/ProtectedRoutesUser";
 import ProtectedRoutesAdminOnly from "./components/ProtectedRoutesAdminOnly";
@@ -17,6 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import PreferredEventCategorySelection from "./components/PreferredEventCategorySelection";
 import EventDetails from "./components/EventDetails";
 import {Container, Nav, Navbar} from "react-bootstrap";
+import EventForm from "./components/EventForm";
 
 function App() {
 
@@ -109,10 +110,18 @@ function App() {
                     </Route>
 
                     <Route element={<ProtectedRoutesAdminAndOrganizer user={user}/>}>
-                        <Route path="/add" element={<AddEvent user={user} events={events}
-                                                              getEventsByCreator={getEventsByCreator}
-                                                              saveEvent={saveEvent} updateEvent={updateEvent}
-                                                              deleteEvent={deleteEvent}/>}/>
+                        <Route path="/add" element={<EventManagement user={user} events={events}
+                                                                     getEventsByCreator={getEventsByCreator}
+                                                                     saveEvent={saveEvent} updateEvent={updateEvent}
+                                                                     deleteEvent={deleteEvent}/>}/>
+                        <Route path="/newEvent" element={<EventForm user={user} events={events}
+                                                                    getEventsByCreator={getEventsByCreator}
+                                                                    saveEvent={saveEvent} updateEvent={updateEvent}/>}/>
+                        <Route path="/editEvent/:id" element={<EventForm user={user} events={events}
+                                                                         getEventsByCreator={getEventsByCreator}
+                                                                         saveEvent={saveEvent}
+                                                                         updateEvent={updateEvent}/>}/>
+
                     </Route>
 
                     <Route element={<ProtectedRoutesAdminAndEditor user={user}/>}>

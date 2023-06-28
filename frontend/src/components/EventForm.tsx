@@ -1,137 +1,198 @@
 import React, {ChangeEvent, FormEvent, useEffect, useState} from 'react';
+import {Button, Col, Container, Form, Row} from "react-bootstrap";
+import {useNavigate, useParams} from "react-router-dom";
 import {EventModel} from "../model/EventModel";
 import {User} from "../model/User";
+import axios from "axios";
 
 type Props = {
     user: User | undefined,
-    event: EventModel | undefined,
-    isFormVisible: boolean,
-    onSave: (event: EventModel) => void,
-    onClose: () => void;
+    events: EventModel[],
+    getEventsByCreator: (creator: string) => void,
+    saveEvent: (event: EventModel) => Promise<void>
+    updateEvent: (id: string, event: EventModel) => Promise<void>
+}
+
+enum FormMode {
+    ADD,
+    EDIT
 }
 
 function EventForm(props: Props) {
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [startDate, setStartDate] = useState("");
-    const [startTime, setStartTime] = useState("");
-    const [location, setLocation] = useState("");
-    const [category, setCategory] = useState("");
-    const [source, setSource] = useState("");
+
+    const params = useParams();
+    const eventId: string | undefined = params.id;
+    const foundEvent: EventModel | undefined = props.events.find((currentEvent: EventModel) => currentEvent.id === eventId);
+
+    const navigate = useNavigate();
+
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [location, setLocation] = useState('');
+    const [category, setCategory] = useState('');
+    const [source, setSource] = useState('');
+    const [image, setImage] = useState<File | null>(null);
+    const [formMode, setFormMode] = useState(FormMode.ADD);
 
     useEffect(() => {
-        if (props.event) {
-            const {title, description, startDate, startTime, location, category, source} = props.event;
-            setTitle(title || '');
-            setDescription(description || '');
-            setStartDate(startDate || '');
-            setStartTime(startTime || '');
-            setLocation(location || '');
-            setCategory(category || '');
-            setSource(source || '');
+        if (foundEvent) {
+            setFormMode(FormMode.EDIT);
+            setTitle(foundEvent.title);
+            setDescription(foundEvent.description);
+            setStartDate(foundEvent.start.slice(0, 16));
+            setLocation(foundEvent.location);
+            setCategory(foundEvent.category);
+            setSource(foundEvent.source);
         } else {
-            setTitle('');
-            setDescription('');
-            setStartDate('');
-            setStartTime('');
-            setLocation('');
-            setCategory('');
-            setSource('');
+            setFormMode(FormMode.ADD);
         }
-    }, [props.event]);
+    }, [foundEvent]);
 
     function onSubmitHandler(e: FormEvent<HTMLFormElement>) {
-        console.log("Submit button clicked");
-
         e.preventDefault();
 
         const event: EventModel = {
-            id: "",
+            id: foundEvent?.id ?? '',
             title: title,
             description: description,
-            start: new Date(startDate + "T" + startTime + ":00"),
-            startDate: startDate,
-            startTime: startTime,
-            end: new Date(startDate + "T" + startTime + ":00"),
+            start: `${startDate}:00.000+00:00`,
             location: location,
             category: category,
-            creator: props.user?.username ?? "",
-            status: "NEW",
+            creator: props.user?.username ?? '',
+            status: 'NEW',
             source: source,
-            imageUrl: ""
+            imageUrl: ''
         };
 
-        props.onSave(event);
-        props.onClose();
+        if (formMode === FormMode.ADD) {
+            props.saveEvent(event)
+                .then(() => handleImageUpload(event.id))
+                .catch(error => console.log(error.message));
+        } else if (formMode === FormMode.EDIT) {
+            props.updateEvent(event.id, event)
+                .then(() => handleImageUpload(event.id))
+                .catch(error => console.log(error.message));
+        }
     }
 
-    function onChangeHandlerTitle(e: ChangeEvent<HTMLInputElement>) {
-        setTitle(e.target.value)
+    function handleImageUpload(eventId: string) {
+        if (image) {
+            const formData = new FormData();
+            formData.append('image', image);
+
+            axios.post(`/api/event/${eventId}/image`, formData)
+                .then(() => {
+                    props.getEventsByCreator(props.user?.username ?? "");
+                    navigate("/add");
+                })
+                .catch(error => console.log(error.message));
+        } else {
+            navigate('/add');
+        }
     }
 
-    function onChangeHandlerDescription(e: ChangeEvent<HTMLTextAreaElement>) {
-        setDescription(e.target.value)
+    function onChangeHandlerImage(e: ChangeEvent<HTMLInputElement>) {
+        const files = e.target.files;
+        if (files && files.length > 0) {
+            const file = files[0];
+            setImage(file);
+        }
     }
 
-    function onChangeHandlerLocation(e: ChangeEvent<HTMLInputElement>) {
-        setLocation(e.target.value)
-    }
-
-    function onChangeHandlerCategory(e: ChangeEvent<HTMLSelectElement>) {
-        setCategory(e.target.value)
-    }
-
-    function onChangeHandlerSource(e: ChangeEvent<HTMLInputElement>) {
-        setSource(e.target.value)
+    function onCloseHandler() {
+        navigate("/add")
     }
 
     return (
-        <div className="modal">
-            <div className="modal-content">
-                <h3>{props.event ? 'Edit Event' : 'Add Event'}</h3>
-                <form onSubmit={onSubmitHandler}>
-                    <div>
-                        <label htmlFor="title">Title </label>
-                        <input type="text" id="title" name="title" value={title} onChange={onChangeHandlerTitle}
-                               required/>
-                    </div>
-                    <div>
-                        <label htmlFor="description">Description</label>
-                        <textarea id="description" name="description" value={description}
-                                  onChange={onChangeHandlerDescription} rows={4} cols={50} required>
-                    </textarea>
-                    </div>
-                    <div>
-                        <label htmlFor="location">Location </label>
-                        <input type="text" id="location" name="location" value={location}
-                               onChange={onChangeHandlerLocation} required/>
-                    </div>
-                    <div>
-                        <label htmlFor="category">Category </label>
-                        <select id="category" name="category" value={category} onChange={onChangeHandlerCategory}
-                                required>
-                            <option value="OTHER">Other</option>
-                            <option value="MUSIC">Music</option>
-                            <option value="ARTS">Arts</option>
-                            <option value="THEATRE">Theatre</option>
-                            <option value="COMEDY">Comedy</option>
-                            <option value="SPORTS">Sports</option>
-                            <option value="EDUCATION">Education</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label htmlFor="source">Source </label>
-                        <input type="url" value={source} onChange={onChangeHandlerSource} required/>
-                    </div>
-                    <div>
-                        <button type="submit">{props.event ? 'Save' : 'Add'}</button>
-                        <button type="button" onClick={props.onClose}>
-                            Close
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <Container>
+            <Row>
+                <Col>
+                    <h1>{formMode === FormMode.ADD ? 'Add event' : 'Update event'}</h1>
+                    <Form onSubmit={onSubmitHandler}>
+                        <Form.Group className="mb-3" controlId="formTitle">
+                            <Form.Label>Titel</Form.Label>
+                            <Form.Control
+                                required
+                                placeholder="Enter event title"
+                                value={title}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formDescription">
+                            <Form.Label>Beschreibung</Form.Label>
+                            <Form.Control
+                                required
+                                placeholder="Enter event description"
+                                as="textarea"
+                                rows={2}
+                                value={description}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formStartDate">
+                            <Form.Label>Date and time</Form.Label>
+                            <Form.Control
+                                required
+                                type="datetime-local"
+                                value={startDate}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => setStartDate(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formLocation">
+                            <Form.Label>Location</Form.Label>
+                            <Form.Control
+                                required
+                                placeholder="Enter event location"
+                                value={location}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => setLocation(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formCategory">
+                            <Form.Label>Category</Form.Label>
+                            <Form.Select
+                                required
+                                value={category}
+                                defaultValue="Select event category"
+                                onChange={(e: ChangeEvent<HTMLSelectElement>) => setCategory(e.target.value)}>
+                                <option value="">Select event category</option>
+                                <option value="OTHER">Other</option>
+                                <option value="MUSIC">Music</option>
+                                <option value="ARTS">Arts</option>
+                                <option value="THEATRE">Theatre</option>
+                                <option value="COMEDY">Comedy</option>
+                                <option value="SPORTS">Sports</option>
+                                <option value="EDUCATION">Education</option>
+                            </Form.Select>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formSource">
+                            <Form.Label>Source</Form.Label>
+                            <Form.Control
+                                required
+                                placeholder="Enter source for further information"
+                                value={source}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => setSource(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Label>Event poster upload</Form.Label>
+                            <Form.Control required type="file" placeholder="Enter event location"
+                                          onChange={onChangeHandlerImage}/>
+                        </Form.Group>
+                        <Row className="mt-3">
+                            <Col>
+                                <Button className="button" onClick={onCloseHandler}>Cancel</Button>
+                            </Col>
+                            <Col>
+                                <Button className="button" type="submit">
+                                    {formMode === FormMode.ADD ? 'Add event' : 'Update event'}
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 
