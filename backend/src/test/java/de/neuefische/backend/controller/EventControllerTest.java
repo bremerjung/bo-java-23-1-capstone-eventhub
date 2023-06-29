@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
@@ -575,5 +576,44 @@ class EventControllerTest {
                              "OTHER"
                          ]
                         """));
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    void testAddImageToEvent() throws Exception {
+        byte[] imageBytes = {1, 2, 3};
+        MockMultipartFile imageFile = new MockMultipartFile("image", "image.jpg", MediaType.IMAGE_JPEG_VALUE, imageBytes);
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/event")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "title": "Title 1",
+                                        "description": "Description",
+                                        "start": "2023-06-14T10:00:00Z",
+                                        "end": "2023-06-14T12:00:00Z",
+                                        "location": "Location",
+                                        "category": "MUSIC",
+                                        "creator": "Creator",
+                                        "status": "NEW"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201))
+                .andReturn();
+
+        String content = result.getResponse().getContentAsString();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        Event event = objectMapper.readValue(content, Event.class);
+
+        mockMvc.perform(MockMvcRequestBuilders.multipart("/api/event/{id}/image", event.getId())
+                        .file(imageFile)
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(event.getId()))
+                .andExpect(jsonPath("$.image").isNotEmpty());
     }
 }

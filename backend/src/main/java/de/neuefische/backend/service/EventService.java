@@ -1,11 +1,15 @@
 package de.neuefische.backend.service;
 
+import de.neuefische.backend.exceptions.ImageProcessingException;
+import de.neuefische.backend.exceptions.InvalidImageException;
 import de.neuefische.backend.model.Event;
 import de.neuefische.backend.model.EventCategory;
 import de.neuefische.backend.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -19,6 +23,7 @@ public class EventService {
     public Event saveEvent(Event event) {
         return eventRepository.save(event.withId(generateUUIDService.generateUUID()));
     }
+
     public List<Event> findAllEvents() {
         return eventRepository.findAll();
     }
@@ -54,5 +59,22 @@ public class EventService {
 
     public void deleteEvent(String id) {
         eventRepository.deleteById(id);
+    }
+
+    public Event saveImageForEvent(String id, MultipartFile image) {
+        Event event = findEventById(id);
+
+        if (image == null || image.isEmpty()) {
+            throw new InvalidImageException("Image is required");
+        }
+
+        try {
+            event.setImage(image.getBytes());
+        } catch (IOException e) {
+            throw new ImageProcessingException("Failed to process image", e);
+        }
+
+        return eventRepository.save(event);
+
     }
 }

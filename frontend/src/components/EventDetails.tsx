@@ -38,17 +38,16 @@ function EventDetails(props: Props) {
                             <Card.Body>
                                 <Card.Title>Event Information</Card.Title>
                                 <Card.Text>
-                                    <p>Id: {foundEvent?.id}</p>
-                                    <p>Category: {foundEvent?.category}</p>
-                                    <p>Description: {foundEvent?.description}</p>
-                                    <p>Start: {foundEvent?.start.toString()}</p>
-                                    <p>Start Date: {foundEvent?.startDate}</p>
-                                    <p>Start Time: {foundEvent?.startTime}</p>
-                                    <p>End: {foundEvent?.end.toString()}</p>
-                                    <p>Location: {foundEvent?.location}</p>
-                                    <p>Creator: {foundEvent?.creator}</p>
-                                    <p>Status: {foundEvent?.status}</p>
-                                    <p>Source: {foundEvent?.source}</p>
+                                    <div>Id: {foundEvent?.id}</div>
+                                    <div>Category: {foundEvent?.category}</div>
+                                    <div>Description: {foundEvent?.description}</div>
+                                    <div>Start: {foundEvent?.start?.toString()}</div>
+                                    <div>Start Date: {foundEvent?.start}</div>
+                                    <div>End: {foundEvent?.end?.toString()}</div>
+                                    <div>Location: {foundEvent?.location}</div>
+                                    <div>Creator: {foundEvent?.creator}</div>
+                                    <div>Status: {foundEvent?.status}</div>
+                                    <div>Source: {foundEvent?.source}</div>
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -57,7 +56,10 @@ function EventDetails(props: Props) {
                         <Card>
                             <Card.Body>
                                 <Card.Title>Event Image</Card.Title>
-                                <Card.Img variant="top" src={foundEvent?.imageUrl} alt={foundEvent?.title}/>
+                                {foundEvent?.image ?
+                                    <Card.Img variant="top" src={`data:image/jpeg;base64,${foundEvent?.image}`}
+                                              alt={foundEvent?.title}/> :
+                                    <Card.Img variant="top" src={foundEvent?.imageUrl} alt={foundEvent?.title}/>}
                             </Card.Body>
                         </Card>
                     </Col>

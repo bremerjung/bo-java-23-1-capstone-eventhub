@@ -1,9 +1,14 @@
 package de.neuefische.backend.service;
 
+import de.neuefische.backend.exceptions.ImageProcessingException;
+import de.neuefische.backend.exceptions.InvalidImageException;
 import de.neuefische.backend.model.Event;
 import de.neuefische.backend.repository.EventRepository;
 import org.junit.jupiter.api.Test;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -86,14 +91,52 @@ class EventServiceTest {
     }
 
     @Test
-    void testDeleteEvent() {
+    void testSaveImageForEvent_case_successful() throws IOException {
         // given
         String id = "123";
+        MultipartFile image = new MockMultipartFile("image.jpg", new byte[]{1, 2, 3});
+        Event event = new Event();
+        event.setId(id);
+        //eventRepository.save(event);
+        when(eventRepository.findById(id)).thenReturn(Optional.of(event));
+        Event eventWithImage = new Event();
+        eventWithImage.setImage(image.getBytes());
+        when(eventRepository.save(event)).thenReturn(eventWithImage);
 
         // when
-        eventService.deleteEvent(id);
+        Event savedEvent = eventService.saveImageForEvent(id, image);
 
         // then
-        verify(eventRepository).deleteById(id);
+        verify(eventRepository).save(event);
+        assertNotNull(savedEvent.getImage());
+        assertEquals(image.getBytes(), savedEvent.getImage());
+    }
+
+    @Test
+    void testSaveImageForEvent_InvalidImage() {
+        // given
+        String id = "123";
+        MultipartFile image = null;
+        Event event = new Event();
+        event.setId(id);
+        when(eventRepository.findById(id)).thenReturn(Optional.of(event));
+
+        // when & then
+        assertThrows(InvalidImageException.class, () -> eventService.saveImageForEvent(id, image));
+    }
+
+    @Test
+    void testSaveImageForEvent_ImageProcessingFailed() throws IOException {
+        // given
+        String id = "123";
+        MultipartFile image = mock(MultipartFile.class);
+
+        Event event = new Event();
+        event.setId(id);
+        when(eventRepository.findById(id)).thenReturn(Optional.of(event));
+        when(image.getBytes()).thenThrow(new IOException());
+
+        // when & then
+        assertThrows(ImageProcessingException.class, () -> eventService.saveImageForEvent(id, image));
     }
 }

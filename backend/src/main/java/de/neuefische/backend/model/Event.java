@@ -24,5 +24,6 @@ public class Event {
     private String creator;
     private EventStatus status;
     private String source;
+    private byte[] image;
     private String imageUrl;
 }

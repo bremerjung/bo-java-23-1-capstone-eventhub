@@ -7,6 +7,7 @@ import de.neuefische.backend.service.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -85,6 +86,11 @@ public class EventController {
     @GetMapping("/categories")
     public EventCategory[] getEventCategories() {
         return EventCategory.values();
+    }
+
+    @PostMapping("/{id}/image")
+    public Event addImageToEvent(@PathVariable String id, @RequestParam("image") MultipartFile image) {
+        return eventService.saveImageForEvent(id, image);
     }
 
 }
