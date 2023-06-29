@@ -1,14 +1,11 @@
 import React from 'react';
 import {Navigate, Outlet} from "react-router-dom";
-import {User} from "../model/User";
+import getStoredUser from "./utils/getStoredUser";
 
-type Props = {
-    user: User | undefined
-}
+function ProtectedRoutesUser() {
 
-function ProtectedRoutesUser(props: Props) {
-
-    const authenticated = props.user !== undefined && props.user.username !== "anyonymousUser"
+    const storedUser = getStoredUser();
+    const authenticated = storedUser !== undefined && storedUser.username !== "anyonymousUser"
 
     return (
         authenticated ? <Outlet/> : <Navigate to={"/"}/>

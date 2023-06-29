@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {User} from "../model/User";
 import './PreferredEventCategorySelection.css';
+import getStoredUser from "./utils/getStoredUser";
 
 type Props = {
     user: User | undefined,
@@ -9,7 +10,7 @@ type Props = {
 }
 
 function PreferredEventCategorySelection(props: Props) {
-    const [selectedCategories, setSelectedCategories] = useState<string[]>(props.user?.preferredCategories ?? []);
+    const [selectedCategories, setSelectedCategories] = useState<string[]>(getStoredUser()?.preferredCategories ?? []);
 
     const isCategorySelected = (category: string) => {
         return selectedCategories.includes(category);

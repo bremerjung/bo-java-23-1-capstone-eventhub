@@ -95,7 +95,7 @@ function App() {
                 <Routes>
                     <Route path={"/"} element={<Home login={login} register={register}/>}/>
 
-                    <Route element={<ProtectedRoutesUser user={user}/>}>
+                    <Route element={<ProtectedRoutesUser/>}>
                         <Route path="/gallery"
                                element={<EventGallery user={user} events={events} getAllEvents={getAllEvents}
                                                       getEventsByCategory={getEventsByCategory}/>}/>
@@ -105,11 +105,11 @@ function App() {
                                                                          updateUserPreferredCategories={updateUserPreferredCategories}/>}/>
                     </Route>
 
-                    <Route element={<ProtectedRoutesAdminOnly user={user}/>}>
+                    <Route element={<ProtectedRoutesAdminOnly/>}>
                         <Route path="/administration" element={<Administration events={events}/>}/>
                     </Route>
 
-                    <Route element={<ProtectedRoutesAdminAndOrganizer user={user}/>}>
+                    <Route element={<ProtectedRoutesAdminAndOrganizer/>}>
                         <Route path="/add" element={<EventManagement user={user} events={events}
                                                                      getEventsByCreator={getEventsByCreator}
                                                                      saveEvent={saveEvent} updateEvent={updateEvent}
@@ -124,7 +124,7 @@ function App() {
 
                     </Route>
 
-                    <Route element={<ProtectedRoutesAdminAndEditor user={user}/>}>
+                    <Route element={<ProtectedRoutesAdminAndEditor/>}>
                         <Route path="/approve" element={<ApproveEvent user={user} events={events}
                                                                       getEventsByStatus={getEventsByStatus}
                                                                       saveEvent={saveEvent}

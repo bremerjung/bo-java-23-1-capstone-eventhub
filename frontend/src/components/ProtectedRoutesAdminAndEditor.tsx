@@ -1,15 +1,11 @@
 import React from 'react';
 import {Navigate, Outlet} from "react-router-dom";
-import {User} from "../model/User";
+import getStoredUser from "./utils/getStoredUser";
 
-type Props = {
-    user: User | undefined
-}
+function ProtectedRoutesAdminAndEditor() {
 
-function ProtectedRoutesAdminAndEditor(props: Props) {
-
-    const authenticated = props.user !== undefined && (props.user.roles.includes("admin") || props.user.roles.includes("editor"));
-
+    const storedUser = getStoredUser();
+    const authenticated = storedUser !== undefined && (storedUser.roles.includes("admin") || storedUser.roles.includes("editor"));
 
     return (
         authenticated ? <Outlet/> : <Navigate to={"/gallery"}/>

@@ -1,13 +1,19 @@
 import axios from "axios";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {User} from "../model/User";
 import {toast} from 'react-toastify';
 import {useNavigate} from "react-router-dom";
+import secureLocalStorage from "react-secure-storage";
+import getStoredUser from "../components/utils/getStoredUser";
 
 export default function useUser() {
 
     const [user, setUser] = useState<User | undefined>(undefined);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setUser(getStoredUser());
+    }, []);
 
     function register(username: string, password: string) {
         return axios.post("/api/user/register", {username, password})
@@ -25,7 +31,11 @@ export default function useUser() {
     function login(username: string, password: string) {
         return axios.post("/api/user/login", undefined, {auth: {username, password}})
             .then((response) => {
-                setUser(response.data)
+                const user = response.data;
+                setUser(user)
+                if (user) {
+                    secureLocalStorage.setItem("user", JSON.stringify(user));
+                }
                 toast.success("Login successful");
             })
             .catch((error) => {
@@ -39,6 +49,7 @@ export default function useUser() {
         return axios.post("/api/user/logout")
             .then(() => {
                 setUser(undefined)
+                secureLocalStorage.removeItem("user")
                 toast.success("Logout successful");
                 navigate("/");
             })

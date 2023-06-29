@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {EventModel} from "../model/EventModel";
 import EventCard from "./EventCard";
 import './EventGallery.css';
@@ -12,6 +12,11 @@ type Props = {
 }
 
 function EventGallery(props: Props) {
+
+    useEffect(() => {
+        props.getAllEvents();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     function onAllEventsClickHandler() {
         props.getAllEvents();
