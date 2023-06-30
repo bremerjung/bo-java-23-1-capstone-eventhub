@@ -24,7 +24,7 @@ function Home(props:Props) {
         if (buttonType === ButtonType.Login) {
             props.login(username, password)
                 .then(() => {
-                    navigate("/gallery");
+                    navigate("/eventViewSelection");
                 }).catch((error) => {
                 toast.error(error.message || "Login failed");
             });
