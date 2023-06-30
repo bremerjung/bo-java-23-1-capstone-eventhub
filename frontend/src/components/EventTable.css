@@ -1,0 +1,9 @@
+@media (max-width: 767px) {
+    .small-device-font {
+        font-size: 12px;
+    }
+
+    .small-icon {
+        font-size: 12px;
+    }
+}
