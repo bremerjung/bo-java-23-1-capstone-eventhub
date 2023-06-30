@@ -51,9 +51,7 @@ function App() {
     }, [user]);
 
     useEffect(() => {
-        if (user !== undefined) {
-            setAreNavLinksVisible(true);
-        }
+        setAreNavLinksVisible(user !== undefined);
     }, [user]);
 
     return (
@@ -106,7 +104,7 @@ function App() {
                     </Route>
 
                     <Route element={<ProtectedRoutesAdminOnly/>}>
-                        <Route path="/administration" element={<Administration events={events}/>}/>
+                        <Route path="/administration" element={<Administration getAllEvents={getAllEvents}/>}/>
                     </Route>
 
                     <Route element={<ProtectedRoutesAdminAndOrganizer/>}>

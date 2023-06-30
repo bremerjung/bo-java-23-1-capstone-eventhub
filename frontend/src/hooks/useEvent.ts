@@ -7,10 +7,16 @@ export default function useEvent() {
     const [events, setEvents] = useState<EventModel[]>([])
     const [categories, setCategories] = useState<string[]>([])
 
-    function getAllEvents() {
+    function getAllEvents(): Promise<EventModel[]> {
         return axios.get("/api/event")
-            .then(response => setEvents(response.data))
-            .catch(error => console.log(error.message))
+            .then(response => {
+                setEvents(response.data);
+                return response.data;
+            })
+            .catch(error => {
+                console.log(error.message);
+                return [];
+            })
     }
 
     function getEventsByStatus(status: string = "NEW") {
