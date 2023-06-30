@@ -18,6 +18,7 @@ import PreferredEventCategorySelection from "./components/PreferredEventCategory
 import EventDetails from "./components/EventDetails";
 import EventForm from "./components/EventForm";
 import Header from "./components/Header";
+import EventViewSelection from "./components/EventViewSelection";
 
 function App() {
 
@@ -74,6 +75,9 @@ function App() {
                     <Route path={"/"} element={<Home login={login} register={register}/>}/>
 
                     <Route element={<ProtectedRoutesUser/>}>
+                        <Route path="/eventViewSelection"
+                               element={<EventViewSelection user={user} events={events} getAllEvents={getAllEvents}
+                                                            getEventsByCategory={getEventsByCategory}/>}/>
                         <Route path="/gallery"
                                element={<EventGallery user={user} events={events} getAllEvents={getAllEvents}
                                                       getEventsByCategory={getEventsByCategory}/>}/>
