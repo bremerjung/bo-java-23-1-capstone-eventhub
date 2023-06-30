@@ -24,12 +24,13 @@ function EventDetails(props: Props) {
             <Container>
                 <Row>
                     <Col>
-                        <h1>Details von: {foundEvent?.title}</h1>
+                        <h3>Details of:</h3>
+                        <h1>{foundEvent?.title}</h1>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="mb-3">
                     <Col>
-                        <Button variant="danger" onClick={onCancelHandler}>Back</Button>
+                        <Button className="button" onClick={onCancelHandler}>Back</Button>
                     </Col>
                 </Row>
                 <Row>

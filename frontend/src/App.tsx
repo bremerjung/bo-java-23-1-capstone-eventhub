@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import useEvent from "./hooks/useEvent";
-import {Link, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import EventGallery from "./components/EventGallery";
 import Home from "./components/Home";
 import useUser from "./hooks/useUser";
@@ -16,8 +16,8 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import PreferredEventCategorySelection from "./components/PreferredEventCategorySelection";
 import EventDetails from "./components/EventDetails";
-import {Container, Nav, Navbar} from "react-bootstrap";
 import EventForm from "./components/EventForm";
+import Header from "./components/Header";
 
 function App() {
 
@@ -68,27 +68,7 @@ function App() {
                 pauseOnHover
                 theme="dark"
             />
-            <header className="App-header">
-                <h3>Event Hub - Die digitale Litfaßsäule</h3>
-                {user !== undefined ? <button id="logout-button" onClick={logout}>Logout</button> : <></>}
-                {areNavLinksVisible && (
-                    <Navbar bg="dark" variant="dark" expand="sm" collapseOnSelect>
-                        <Container>
-                            <Navbar.Toggle/>
-                            <Navbar.Collapse>
-                                <Nav>
-                                    <Nav.Link as={Link} className="menuLink" to="/gallery">Gallery</Nav.Link>
-                                    <Nav.Link as={Link} className="menuLink" to="/administration">Admin Area</Nav.Link>
-                                    <Nav.Link as={Link} className="menuLink" to="/add">Organizer Area</Nav.Link>
-                                    <Nav.Link as={Link} className="menuLink" to="/approve">Editor Area</Nav.Link>
-                                    <Nav.Link as={Link} className="menuLink" to="/categorySelection">Category
-                                        Selection</Nav.Link>
-                                </Nav>
-                            </Navbar.Collapse>
-                        </Container>
-                    </Navbar>
-                )}
-            </header>
+            <Header user={user} logout={logout} areNavLinksVisible={areNavLinksVisible}/>
             <main className="App-main">
                 <Routes>
                     <Route path={"/"} element={<Home login={login} register={register}/>}/>
