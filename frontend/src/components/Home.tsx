@@ -2,6 +2,7 @@ import React, {ChangeEvent, FormEvent, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import './Home.css';
 import {toast} from "react-toastify";
+import {Button, Container, Form, Row} from "react-bootstrap";
 
 type Props = {
     login: (username: string, password: string) => Promise<void>,
@@ -12,7 +13,8 @@ enum ButtonType {
     Login,
     Register
 }
-function Home(props:Props) {
+
+function Home(props: Props) {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -55,16 +57,34 @@ function Home(props:Props) {
     }
 
     return (
-        <div>
-            <h1>Login & Registration</h1>
-            <p>Please fill out the form below to register for an account!</p>
-            <form onSubmit={onSubmit}>
-                <input type="email" placeholder="Email" required onChange={onChangeHandlerUsername}/>
-                <input type="password" placeholder="Password" required minLength={3} onChange={onChangeHandlerPassword} />
-                <button type="submit" className="login" onClick={onClickLogin}>Login</button>
-                <button type="submit" className="register" onClick={onClickRegister}>Register</button>
-            </form>
-        </div>
+        <Container>
+            <Row>
+                <h1>Login & Registration</h1>
+            </Row>
+            <Row>
+                <p>Please fill out the form below to register for an account!</p>
+            </Row>
+            <Form onSubmit={onSubmit}>
+                <Form.Control className="m-1"
+                              required
+                              type="email"
+                              placeholder="Email"
+                              value={username}
+                              onChange={onChangeHandlerUsername}
+                />
+                <Form.Control className="m-1"
+                              required
+                              type="password"
+                              placeholder="Password"
+                              value={password}
+                              onChange={onChangeHandlerPassword}
+                />
+                <Row className="text-center m-2">
+                    <Button type="submit" className="button m-1" onClick={onClickLogin}>Login</Button>
+                    <Button type="submit" className="button m-1" onClick={onClickRegister}>Register</Button>
+                </Row>
+            </Form>
+        </Container>
     );
 }
 

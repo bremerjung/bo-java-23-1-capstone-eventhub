@@ -3,6 +3,7 @@ import {EventModel} from "../model/EventModel";
 import EventCard from "./EventCard";
 import './EventGallery.css';
 import {User} from "../model/User";
+import {Button, Container} from "react-bootstrap";
 
 type Props = {
     user: User | undefined,
@@ -30,10 +31,10 @@ function EventGallery(props: Props) {
 
     return (
         <div>
-            <div>
-                <button onClick={onAllEventsClickHandler}>All events</button>
-                <button onClick={onMyEventsClickHandler}>My events</button>
-            </div>
+            <Container>
+                <Button className="button m-1" onClick={onAllEventsClickHandler}>All events</Button>
+                <Button className="button m-1" onClick={onMyEventsClickHandler}>My events</Button>
+            </Container>
             <div className="event-gallery">
 
                 {props.events.map((currentEvent: EventModel) => {

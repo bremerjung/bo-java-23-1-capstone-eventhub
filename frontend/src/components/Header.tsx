@@ -2,7 +2,15 @@ import React from 'react';
 import {Button, Col, Container, Nav, Navbar, OverlayTrigger, Tooltip} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCalendar, faCheckCircle, faCog, faImages, faList, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
+import {
+    faCalendar,
+    faCheckCircle,
+    faCog,
+    faFileInvoice,
+    faImages,
+    faList,
+    faSignOutAlt
+} from "@fortawesome/free-solid-svg-icons";
 import {User} from "../model/User";
 
 type Props = {
@@ -13,8 +21,9 @@ type Props = {
 
 function Header(props: Props) {
     return (
-        <header className="App-header">
-            <h3>Event Hub <FontAwesomeIcon icon={faCalendar} size="sm"/> Die digitale Litfaßsäule</h3>
+        <header className="App-header p-1 m-1">
+            <h4>Event Hub <FontAwesomeIcon className="m-1" icon={faFileInvoice} size="sm"/> Die digitale Litfaßsäule
+            </h4>
             {props.areNavLinksVisible && (
                 <Navbar variant="dark" collapseOnSelect>
                     <Container>
