@@ -6,7 +6,7 @@ import {EventModel} from "../model/EventModel";
 type Props = {
     user: User | undefined,
     events: EventModel[],
-    getAllEvents: () => void,
+    getEventsByStatus: (status: string) => void,
     getEventsByCategory: (categories: string[]) => void
 }
 

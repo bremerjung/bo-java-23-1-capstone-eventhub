@@ -10,7 +10,7 @@ import EventCarousel from "./EventCarousel";
 type Props = {
     user: User | undefined,
     events: EventModel[],
-    getAllEvents: () => void,
+    getEventsByStatus: (status: string) => void,
     getEventsByCategory: (categories: string[]) => void
 }
 
@@ -24,13 +24,14 @@ function EventViewSelection(props: Props) {
             >
                 <Tab eventKey="Cards" title="Cards">
                     <Container>
-                        <EventGallery user={props.user} events={props.events} getAllEvents={props.getAllEvents}
+                        <EventGallery user={props.user} events={props.events}
+                                      getEventsByStatus={props.getEventsByStatus}
                                       getEventsByCategory={props.getEventsByCategory}/>
                     </Container>
                 </Tab>
 
                 <Tab eventKey="Carousel" title="Carousel">
-                    <EventCarousel user={props.user} events={props.events} getAllEvents={props.getAllEvents}
+                    <EventCarousel user={props.user} events={props.events} getEventsByStatus={props.getEventsByStatus}
                                    getEventsByCategory={props.getEventsByCategory}/>
                 </Tab>
 

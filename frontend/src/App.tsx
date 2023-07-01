@@ -76,10 +76,11 @@ function App() {
 
                     <Route element={<ProtectedRoutesUser/>}>
                         <Route path="/eventViewSelection"
-                               element={<EventViewSelection user={user} events={events} getAllEvents={getAllEvents}
+                               element={<EventViewSelection user={user} events={events}
+                                                            getEventsByStatus={getEventsByStatus}
                                                             getEventsByCategory={getEventsByCategory}/>}/>
                         <Route path="/gallery"
-                               element={<EventGallery user={user} events={events} getAllEvents={getAllEvents}
+                               element={<EventGallery user={user} events={events} getEventsByStatus={getEventsByStatus}
                                                       getEventsByCategory={getEventsByCategory}/>}/>
                         <Route path="/events/:id" element={<EventDetails events={events}/>}/>
                         <Route path="/categorySelection"

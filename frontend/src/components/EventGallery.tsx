@@ -7,19 +7,19 @@ import {User} from "../model/User";
 type Props = {
     user: User | undefined,
     events: EventModel[],
-    getAllEvents: () => void,
+    getEventsByStatus: (status: string) => void,
     getEventsByCategory: (categories: string[]) => void
 }
 
 function EventGallery(props: Props) {
 
     useEffect(() => {
-        props.getAllEvents();
+        props.getEventsByStatus("APPROVED");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     function onAllEventsClickHandler() {
-        props.getAllEvents();
+        props.getEventsByStatus("APPROVED");
     }
 
     function onMyEventsClickHandler() {
