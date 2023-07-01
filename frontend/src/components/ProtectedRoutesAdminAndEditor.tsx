@@ -8,7 +8,7 @@ function ProtectedRoutesAdminAndEditor() {
     const authenticated = storedUser !== undefined && (storedUser.roles.includes("admin") || storedUser.roles.includes("editor"));
 
     return (
-        authenticated ? <Outlet/> : <Navigate to={"/gallery"}/>
+        authenticated ? <Outlet/> : <Navigate to={"/eventViewSelection"}/>
     );
 }
 
