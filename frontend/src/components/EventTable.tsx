@@ -6,8 +6,8 @@ import {EventModel} from "../model/EventModel";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCheck,
-    faClock,
     faEllipsisH,
+    faExclamation,
     faFutbol,
     faGraduationCap,
     faLaugh,
@@ -17,6 +17,7 @@ import {
     faTimes
 } from "@fortawesome/free-solid-svg-icons";
 import "./EventTable.css";
+import {Link} from "react-router-dom";
 
 type Props = {
     getAllEvents: () => Promise<EventModel[]>
@@ -156,7 +157,8 @@ function EventTable(props: Props) {
                                     hour: 'numeric',
                                     minute: 'numeric'
                                 })}</td>
-                                <td className="small-device-font">{event.title}</td>
+                                <td className="small-device-font"><Link to={`/events/${event.id}`}>{event.title}</Link>
+                                </td>
                                 <td className="small-device-font">{event.location}</td>
                                 <td>
                                     {event.category === 'MUSIC' &&
@@ -179,7 +181,7 @@ function EventTable(props: Props) {
                                         <FontAwesomeIcon icon={faCheck} className="small-icon"/>}
                                     {event.status === 'DECLINED' &&
                                         <FontAwesomeIcon icon={faTimes} className="small-icon"/>}
-                                    {event.status === 'NEW' && <FontAwesomeIcon icon={faClock} className="small-icon"/>}
+                                    {event.status === 'NEW' && <FontAwesomeIcon icon={faExclamation}/>}
                                 </td>
                             </tr>
                         ))}
