@@ -153,4 +153,81 @@ class UserControllerTest {
         assertNull(SecurityContextHolder.getContext().getAuthentication());
     }
 
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    void testGetAllUsers_whenGetAllUsers_returnEmptyUserList_andStatusCode200() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("[]"));
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    void testGetAllUsers_case_UserList_not_empty() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user/register")
+                .contentType("application/json")
+                .content("""
+                        {
+                                "username": "user@event.hub",
+                                "password": "123"
+                        }
+                        """)
+                .with(csrf()));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/user"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        [
+                                {
+                                        "username": "user@event.hub",
+                                        "roles": [
+                                                "user"
+                                        ]
+                                }
+                        ]
+                        """))
+                .andExpect(jsonPath("$[0].id").isNotEmpty());
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    void testUpdateRole() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/user/register")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                        "username": "user@event.hub",
+                                        "password": "123"
+                                }
+                                """)
+                        .with(csrf()))
+                .andExpect(status().is(201))
+                .andExpect(content().json("""
+                        {
+                                        "username": "user@event.hub",
+                                        "roles": [
+                                                "user"
+                                        ]
+                        }
+                        """))
+                .andExpect(jsonPath("$.id").isNotEmpty());
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/user/{username}/update-role/{role}", "user@event.hub", "admin")
+                        .contentType("application/json")
+                        .with(csrf()))
+                .andExpect(status().is(200))
+                .andExpect(content().json("""
+                        {
+                                        "username": "user@event.hub",
+                                        "roles": [
+                                                "admin"
+                                        ]
+                        }
+                        """))
+                .andExpect(jsonPath("$.id").isNotEmpty());
+    }
+
 }
