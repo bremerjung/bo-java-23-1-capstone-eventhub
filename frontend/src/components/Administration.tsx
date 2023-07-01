@@ -3,6 +3,7 @@ import {EventModel} from "../model/EventModel";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import EventTable from "./EventTable";
+import UserList from "./UserList";
 
 type Props = {
     getAllEvents: () => Promise<EventModel[]>
@@ -23,6 +24,7 @@ function Administration(props: Props) {
                 </Tab>
 
                 <Tab eventKey="Users" title="Users">
+                    <UserList/>
                 </Tab>
 
                 <Tab eventKey="General" title="General">
