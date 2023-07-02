@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Button, Carousel, Container} from "react-bootstrap";
 import {User} from "../model/User";
 import {EventModel} from "../model/EventModel";
@@ -7,30 +7,13 @@ import "./EventCarousel.css";
 type Props = {
     user: User | undefined,
     events: EventModel[],
-    getEventsByStatus: (status: string) => void,
-    getEventsByCategory: (categories: string[]) => void,
+    onAllEventsClickHandler: () => void,
+    onMyEventsClickHandler: () => void,
     activeEventFilter: string,
     setActiveEventFilter: (filter: string) => void
 }
 
 function EventCarousel(props: Props) {
-    useEffect(() => {
-        props.getEventsByStatus("APPROVED");
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    function onAllEventsClickHandler() {
-        props.getEventsByStatus("APPROVED");
-        props.setActiveEventFilter("all");
-    }
-
-    function onMyEventsClickHandler() {
-        if (props.user?.preferredCategories) {
-            props.getEventsByCategory(props.user.preferredCategories);
-            props.setActiveEventFilter("my");
-        }
-    }
-
     function renderEventImage(event: EventModel) {
         if (event.image) {
             return <img className="d-block w-100" src={`data:image/jpeg;base64,${event.image}`} alt={event.title}/>;
@@ -43,14 +26,14 @@ function EventCarousel(props: Props) {
         <div>
             <Container>
                 {props.activeEventFilter === "all" ? (
-                    <Button className="button m-1 active" onClick={onAllEventsClickHandler}>All events</Button>
+                    <Button className="button m-1 active" onClick={props.onAllEventsClickHandler}>All events</Button>
                 ) : (
-                    <Button className="button m-1" onClick={onAllEventsClickHandler}>All events</Button>
+                    <Button className="button m-1" onClick={props.onAllEventsClickHandler}>All events</Button>
                 )}
                 {props.activeEventFilter === "my" ? (
-                    <Button className="button m-1 active" onClick={onMyEventsClickHandler}>My events</Button>
+                    <Button className="button m-1 active" onClick={props.onMyEventsClickHandler}>My events</Button>
                 ) : (
-                    <Button className="button m-1" onClick={onMyEventsClickHandler}>My events</Button>
+                    <Button className="button m-1" onClick={props.onMyEventsClickHandler}>My events</Button>
                 )}
             </Container>
             <Carousel>
