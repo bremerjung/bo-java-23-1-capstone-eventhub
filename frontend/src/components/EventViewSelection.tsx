@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {User} from "../model/User";
 import {EventModel} from "../model/EventModel";
 import Tabs from "react-bootstrap/Tabs";
@@ -15,6 +15,8 @@ type Props = {
 }
 
 function EventViewSelection(props: Props) {
+    const [activeEventFilter, setActiveEventFilter] = useState<string>("all");
+
     return (
         <div>
             <Tabs
@@ -26,13 +28,16 @@ function EventViewSelection(props: Props) {
                     <Container>
                         <EventGallery user={props.user} events={props.events}
                                       getEventsByStatus={props.getEventsByStatus}
-                                      getEventsByCategory={props.getEventsByCategory}/>
+                                      getEventsByCategory={props.getEventsByCategory}
+                                      activeEventFilter={activeEventFilter}
+                                      setActiveEventFilter={setActiveEventFilter}/>
                     </Container>
                 </Tab>
 
                 <Tab eventKey="Carousel" title="Carousel">
                     <EventCarousel user={props.user} events={props.events} getEventsByStatus={props.getEventsByStatus}
-                                   getEventsByCategory={props.getEventsByCategory}/>
+                                   getEventsByCategory={props.getEventsByCategory} activeEventFilter={activeEventFilter}
+                                   setActiveEventFilter={setActiveEventFilter}/>
                 </Tab>
 
                 <Tab eventKey="Map" title="Map">

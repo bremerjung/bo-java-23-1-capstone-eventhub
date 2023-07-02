@@ -9,11 +9,12 @@ type Props = {
     user: User | undefined,
     events: EventModel[],
     getEventsByStatus: (status: string) => void,
-    getEventsByCategory: (categories: string[]) => void
+    getEventsByCategory: (categories: string[]) => void,
+    activeEventFilter: string,
+    setActiveEventFilter: (filter: string) => void
 }
 
 function EventGallery(props: Props) {
-
     useEffect(() => {
         props.getEventsByStatus("APPROVED");
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -21,19 +22,29 @@ function EventGallery(props: Props) {
 
     function onAllEventsClickHandler() {
         props.getEventsByStatus("APPROVED");
+        props.setActiveEventFilter("all");
     }
 
     function onMyEventsClickHandler() {
         if (props.user?.preferredCategories) {
             props.getEventsByCategory(props.user.preferredCategories);
+            props.setActiveEventFilter("my");
         }
     }
 
     return (
         <div>
             <Container>
-                <Button className="button m-1" onClick={onAllEventsClickHandler}>All events</Button>
-                <Button className="button m-1" onClick={onMyEventsClickHandler}>My events</Button>
+                {props.activeEventFilter === "all" ? (
+                    <Button className="button m-1 active" onClick={onAllEventsClickHandler}>All events</Button>
+                ) : (
+                    <Button className="button m-1" onClick={onAllEventsClickHandler}>All events</Button>
+                )}
+                {props.activeEventFilter === "my" ? (
+                    <Button className="button m-1 active" onClick={onMyEventsClickHandler}>My events</Button>
+                ) : (
+                    <Button className="button m-1" onClick={onMyEventsClickHandler}>My events</Button>
+                )}
             </Container>
             <div className="event-gallery">
 
