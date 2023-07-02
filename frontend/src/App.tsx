@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import useEvent from "./hooks/useEvent";
 import {Route, Routes} from "react-router-dom";
-import EventGallery from "./components/EventGallery";
 import Home from "./components/Home";
 import useUser from "./hooks/useUser";
 import ApproveEvent from "./components/ApproveEvent";
@@ -79,9 +78,6 @@ function App() {
                                element={<EventViewSelection user={user} events={events}
                                                             getEventsByStatus={getEventsByStatus}
                                                             getEventsByCategory={getEventsByCategory}/>}/>
-                        <Route path="/gallery"
-                               element={<EventGallery user={user} events={events} getEventsByStatus={getEventsByStatus}
-                                                      getEventsByCategory={getEventsByCategory}/>}/>
                         <Route path="/events/:id" element={<EventDetails events={events}/>}/>
                         <Route path="/categorySelection"
                                element={<PreferredEventCategorySelection user={user} categories={categories}
@@ -89,7 +85,8 @@ function App() {
                     </Route>
 
                     <Route element={<ProtectedRoutesAdminOnly/>}>
-                        <Route path="/administration" element={<Administration getAllEvents={getAllEvents}/>}/>
+                        <Route path="/administration"
+                               element={<Administration user={user} getAllEvents={getAllEvents}/>}/>
                     </Route>
 
                     <Route element={<ProtectedRoutesAdminAndOrganizer/>}>
