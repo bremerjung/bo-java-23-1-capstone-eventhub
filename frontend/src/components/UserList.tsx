@@ -66,7 +66,8 @@ function UserList() {
                                     </Button>
                                 </OverlayTrigger>
                                 <OverlayTrigger placement="top" overlay={<Tooltip>Set role Administrator</Tooltip>}>
-                                    <Button size="sm" className="button"
+                                    <Button size="sm"
+                                            className="button m-1"
                                             onClick={() => onSetUserRoleHandler(currentUser, 'admin')}>
                                         <FontAwesomeIcon className="small-icon" icon={faUserShield}/>
                                     </Button>
