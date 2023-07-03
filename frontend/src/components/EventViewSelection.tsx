@@ -43,7 +43,7 @@ function EventViewSelection(props: Props) {
             >
                 <Tab eventKey="Cards" title="Cards">
                     <Container>
-                        <EventGallery user={props.user} events={props.events}
+                        <EventGallery events={props.events}
                                       onAllEventsClickHandler={onAllEventsClickHandler}
                                       onMyEventsClickHandler={onMyEventsClickHandler}
                                       activeEventFilter={activeEventFilter}
@@ -52,7 +52,7 @@ function EventViewSelection(props: Props) {
                 </Tab>
 
                 <Tab eventKey="Carousel" title="Carousel">
-                    <EventCarousel user={props.user} events={props.events}
+                    <EventCarousel events={props.events}
                                    onAllEventsClickHandler={onAllEventsClickHandler}
                                    onMyEventsClickHandler={onMyEventsClickHandler} activeEventFilter={activeEventFilter}
                                    setActiveEventFilter={setActiveEventFilter}/>

@@ -1,11 +1,10 @@
 import React from 'react';
-import {Button, Carousel, Container} from "react-bootstrap";
-import {User} from "../model/User";
+import {Carousel} from "react-bootstrap";
 import {EventModel} from "../model/EventModel";
 import "./EventCarousel.css";
+import EventFilter from "./EventFilter";
 
 type Props = {
-    user: User | undefined,
     events: EventModel[],
     onAllEventsClickHandler: () => void,
     onMyEventsClickHandler: () => void,
@@ -24,18 +23,9 @@ function EventCarousel(props: Props) {
 
     return (
         <div>
-            <Container>
-                {props.activeEventFilter === "all" ? (
-                    <Button className="button m-1 active" onClick={props.onAllEventsClickHandler}>All events</Button>
-                ) : (
-                    <Button className="button m-1" onClick={props.onAllEventsClickHandler}>All events</Button>
-                )}
-                {props.activeEventFilter === "my" ? (
-                    <Button className="button m-1 active" onClick={props.onMyEventsClickHandler}>My events</Button>
-                ) : (
-                    <Button className="button m-1" onClick={props.onMyEventsClickHandler}>My events</Button>
-                )}
-            </Container>
+            <EventFilter onAllEventsClickHandler={props.onAllEventsClickHandler}
+                         onMyEventsClickHandler={props.onMyEventsClickHandler}
+                         activeEventFilter={props.activeEventFilter} setActiveEventFilter={props.setActiveEventFilter}/>
             <Carousel>
                 {props.events.map((currentEvent) => (
                     <Carousel.Item key={currentEvent.id}>
