@@ -16,7 +16,7 @@ function EventDetails(props: Props) {
     const navigate = useNavigate();
 
     function onCancelHandler() {
-        navigate("/approve")
+        navigate(-1)
     }
 
     return (

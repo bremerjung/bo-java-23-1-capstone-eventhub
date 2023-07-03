@@ -9,6 +9,7 @@ import getStoredUser from "../components/utils/getStoredUser";
 export default function useUser() {
 
     const [user, setUser] = useState<User | undefined>(undefined);
+    const [users, setUsers] = useState<User[]>([])
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -74,6 +75,18 @@ export default function useUser() {
 
     }
 
-    return {user, register, login, logout, updateUserPreferredCategories};
+    function getAllUsers() {
+        return axios.get("/api/user")
+            .then(response => setUsers(response.data))
+            .catch(error => console.log(error.message))
+    }
+
+    function updateUserRole(username: string, role: string) {
+        return axios.put(`/api/user/${username}/update-role/${role}`)
+            .then(() => getAllUsers())
+            .catch(error => console.log(error.message))
+    }
+
+    return {user, users, register, login, logout, updateUserPreferredCategories, getAllUsers, updateUserRole};
 
 }

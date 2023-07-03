@@ -104,4 +104,61 @@ class EventHubUserDetailServiceTest {
         verify(userRepository).save(user);
     }
 
+    @Test
+    void testFindAllUsers() {
+        // given
+        List<EventHubUser> userList = new ArrayList<>();
+        List<SimpleGrantedAuthority> roles = List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        List<EventCategory> preferredCategories = List.of(EventCategory.MUSIC, EventCategory.SPORTS);
+        EventHubUser user1 = new EventHubUser("1", "user1@event.hub", "123", roles, preferredCategories);
+        EventHubUser user2 = new EventHubUser("2", "user2@event.hub", "123", roles, preferredCategories);
+        userList.add(user1);
+        userList.add(user2);
+        when(userRepository.findAll()).thenReturn(userList);
+        List<EventHubUserDTO> expectedUserDTOs = new ArrayList<>();
+        for (EventHubUser user : userList) {
+            expectedUserDTOs.add(new EventHubUserDTO(user.getId(), user.getUsername(), user.getRoles().stream().map(SimpleGrantedAuthority::toString).toList(), user.getPreferredCategories()));
+        }
+
+        // when
+        List<EventHubUserDTO> result = eventHubUserDetailService.findAllUsers();
+
+        // then
+        assertEquals(expectedUserDTOs, result);
+        verify(userRepository, times(1)).findAll();
+    }
+
+    @Test
+    void testUpdateUserRole() {
+        // given
+        String username = "testuser";
+        String role = "admin";
+        EventHubUser userToUpdate = new EventHubUser();
+        userToUpdate.setUsername(username);
+        when(userRepository.findEventHubUserByUsername(username)).thenReturn(java.util.Optional.of(userToUpdate));
+        when(userRepository.save(userToUpdate)).thenReturn(userToUpdate);
+
+        // when
+        EventHubUserDTO updatedUser = eventHubUserDetailService.updateUserRole(username, role);
+
+        // then
+        assertEquals(1, updatedUser.getRoles().size());
+        assertEquals(role, updatedUser.getRoles().get(0));
+        verify(userRepository).findEventHubUserByUsername(username);
+        verify(userRepository).save(userToUpdate);
+    }
+
+    @Test
+    void testUpdateUserRole_UserNotFound() {
+        // given
+        String username = "nonexistentuser";
+        String role = "admin";
+        when(userRepository.findEventHubUserByUsername(username)).thenReturn(java.util.Optional.empty());
+
+        // when & then
+        assertThrows(UsernameNotFoundException.class, () -> eventHubUserDetailService.updateUserRole(username, role));
+        verify(userRepository).findEventHubUserByUsername(username);
+        verify(userRepository, never()).save(any());
+    }
+
 }

@@ -44,6 +44,16 @@ public class UserController {
 
     @PutMapping("/update-preferred-categories")
     public EventHubUserDTO updatePreferredCategories(@RequestBody UserPreferredCategoriesDTO userPreferredCategories) {
-       return service.updateUserPreferredCategories(userPreferredCategories);
+        return service.updateUserPreferredCategories(userPreferredCategories);
+    }
+
+    @GetMapping
+    public List<EventHubUserDTO> getAllUsers() {
+        return service.findAllUsers();
+    }
+
+    @PutMapping("/{username}/update-role/{role}")
+    public EventHubUserDTO updateRole(@PathVariable String username, @PathVariable String role) {
+        return service.updateUserRole(username, role);
     }
 }

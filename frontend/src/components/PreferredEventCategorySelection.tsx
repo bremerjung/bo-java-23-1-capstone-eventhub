@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {User} from "../model/User";
 import './PreferredEventCategorySelection.css';
 import getStoredUser from "./utils/getStoredUser";
+import {Button, Form} from "react-bootstrap";
 
 type Props = {
     user: User | undefined,
@@ -29,23 +30,27 @@ function PreferredEventCategorySelection(props: Props) {
     };
 
     return (
-        <div>
+        <div className="container">
+            <h6>Logged in user: {props.user?.username}</h6>
             <h1>Event category selection</h1>
-            <h2>Logged in user: {props.user?.username}</h2>
-            <fieldset>
-                <legend>Select the event categories you are interested in:</legend>
-                {props.categories.map((category: string) => {
-                    return (
+            <Form>
+                <Form.Group>
+                    <Form.Label>Select your preferred event categories:</Form.Label>
+                    {props.categories.map((category) => (
                         <div className="categoryContainer" key={category}>
-                            <label htmlFor={category}><input type="checkbox" id={category} name={category}
-                                                             checked={isCategorySelected(category)}
-                                                             onChange={() => handleCategoryChange(category)}/> {category}
-                            </label>
+                            <Form.Check
+                                type="checkbox"
+                                id={category}
+                                label={category}
+                                checked={isCategorySelected(category)}
+                                onChange={() => handleCategoryChange(category)}
+                                className="customCheckbox"
+                            />
                         </div>
-                    )
-                })}
-            </fieldset>
-            <button onClick={handleConfirmSelection}>Confirm</button>
+                    ))}
+                </Form.Group>
+                <Button className="button" onClick={handleConfirmSelection}>Confirm</Button>
+            </Form>
         </div>
     );
 }

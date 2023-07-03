@@ -1,3 +1,19 @@
+.container {
+    text-align: center;
+}
+
 .categoryContainer {
-    display:flex;
+    margin: 10px;
+}
+
+.customCheckbox .form-check-input {
+    margin-right: 10px;
+}
+
+.button {
+    margin-top: 20px;
+}
+
+.categoryContainer .form-check {
+    display: block;
 }

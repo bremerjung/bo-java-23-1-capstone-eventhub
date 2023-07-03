@@ -36,7 +36,7 @@ function EventCard(props: Props) {
                 <ListGroup.Item>{props.event.location}</ListGroup.Item>
             </ListGroup>*/}
             <Card.Body>
-                <Card.Link href="#">Card Link</Card.Link>
+                <Card.Link href={props.event.source} target="_blank">Source Link</Card.Link>
                 <Card.Link href="#">Another Link</Card.Link>
             </Card.Body>
             <Card.Footer className="text-muted">{props.event.creator}</Card.Footer>

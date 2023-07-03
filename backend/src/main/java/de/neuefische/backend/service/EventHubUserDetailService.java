@@ -75,4 +75,21 @@ public class EventHubUserDetailService implements UserDetailsService {
         return new EventHubUserDTO(userToUpdate.getId(), userToUpdate.getUsername(), userToUpdate.getRoles().stream().map(SimpleGrantedAuthority::toString).toList(), userToUpdate.getPreferredCategories());
     }
 
+    public List<EventHubUserDTO> findAllUsers() {
+        List<EventHubUser> users = userRepository.findAll();
+        List<EventHubUserDTO> userDTOs = new ArrayList<>();
+        for (EventHubUser user : users) {
+            userDTOs.add(new EventHubUserDTO(user.getId(), user.getUsername(), user.getRoles().stream().map(SimpleGrantedAuthority::toString).toList(), user.getPreferredCategories()));
+        }
+        return userDTOs;
+    }
+
+    public EventHubUserDTO updateUserRole(String username, String role) {
+        EventHubUser userToUpdate = userRepository.findEventHubUserByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MESSAGE, username)));
+        userToUpdate.setRoles(Collections.singletonList(new SimpleGrantedAuthority(role)));
+        userRepository.save(userToUpdate);
+        return new EventHubUserDTO(userToUpdate.getId(), userToUpdate.getUsername(), userToUpdate.getRoles().stream().map(SimpleGrantedAuthority::toString).toList(), userToUpdate.getPreferredCategories());
+    }
+
 }

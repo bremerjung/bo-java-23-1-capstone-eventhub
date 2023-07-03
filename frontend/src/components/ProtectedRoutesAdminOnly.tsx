@@ -8,7 +8,7 @@ function ProtectedRoutesAdminOnly() {
     const authenticated = storedUser?.roles?.includes("admin");
 
     return (
-        authenticated ? <Outlet/> : <Navigate to={"/gallery"}/>
+        authenticated ? <Outlet/> : <Navigate to={"/eventViewSelection"}/>
     );
 }
 

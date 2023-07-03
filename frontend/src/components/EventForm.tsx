@@ -172,6 +172,7 @@ function EventForm(props: Props) {
                             <Form.Label>Source</Form.Label>
                             <Form.Control
                                 required
+                                type="url"
                                 placeholder="Enter source for further information"
                                 value={source}
                                 onChange={(e: ChangeEvent<HTMLInputElement>) => setSource(e.target.value)}
