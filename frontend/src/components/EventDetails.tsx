@@ -46,6 +46,8 @@ function EventDetails(props: Props) {
                                     <div>Start Date: {foundEvent?.start}</div>
                                     <div>End: {foundEvent?.end?.toString()}</div>
                                     <div>Location: {foundEvent?.location}</div>
+                                    <div>Location latitude: {foundEvent?.locationLatitude}</div>
+                                    <div>Location longitude: {foundEvent?.locationLongitude}</div>
                                     <div>Creator: {foundEvent?.creator}</div>
                                     <div>Status: {foundEvent?.status}</div>
                                     <div>Source: {foundEvent?.source}</div>

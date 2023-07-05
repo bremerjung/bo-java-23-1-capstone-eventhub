@@ -40,7 +40,10 @@ class EventControllerTest {
                                         "location": "Location",
                                         "category": "MUSIC",
                                         "creator": "Creator",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520008",
+                                        "locationLongitude": "13.404954"
                                 }
                                 """)
                         .with(csrf()))
@@ -58,7 +61,10 @@ class EventControllerTest {
                                 "location": "Location",
                                 "category": "MUSIC",
                                 "creator": "Creator",
-                                "status": "NEW"
+                                "status": "NEW",
+                                "source": "https://www.google.com",
+                                "locationLatitude": "52.520008",
+                                "locationLongitude": "13.404954"
                             }
                         ]
                         """))
@@ -89,7 +95,10 @@ class EventControllerTest {
                                         "location": "Location",
                                         "category": "MUSIC",
                                         "creator": "Creator",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520008",
+                                        "locationLongitude": "13.404954"
                                 }
                                 """)
                         .with(csrf()))
@@ -113,7 +122,10 @@ class EventControllerTest {
                                         "location": "Location",
                                         "category": "MUSIC",
                                         "creator": "Creator",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520008",
+                                        "locationLongitude": "13.404954"
                         }
                         """)).andExpect(jsonPath("$.id").value(event.getId()));
     }
@@ -133,7 +145,10 @@ class EventControllerTest {
                                         "location": "Location",
                                         "category": "MUSIC",
                                         "creator": "Creator",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520008",
+                                        "locationLongitude": "13.404954"
                                 }
                                 """)
                         .with(csrf()))
@@ -157,7 +172,10 @@ class EventControllerTest {
                                         "location": "New Location",
                                         "category": "THEATRE",
                                         "creator": "Creator 2",
-                                        "status": "APPROVED"
+                                        "status": "APPROVED",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520007",
+                                        "locationLongitude": "13.404955"
                                 }
                                 """)
                         .with(csrf()))
@@ -174,7 +192,10 @@ class EventControllerTest {
                             "location": "New Location",
                             "category": "THEATRE",
                             "creator": "Creator 2",
-                            "status": "APPROVED"
+                            "status": "APPROVED",
+                            "source": "https://www.google.com",
+                            "locationLatitude": "52.520007",
+                            "locationLongitude": "13.404955"
                         }
                         """));
     }
@@ -194,7 +215,10 @@ class EventControllerTest {
                                         "location": "Location",
                                         "category": "MUSIC",
                                         "creator": "Creator",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520008",
+                                        "locationLongitude": "13.404954"
                                 }
                                 """)
                         .with(csrf()))
@@ -229,7 +253,10 @@ class EventControllerTest {
                                         "location": "Location 1",
                                         "category": "MUSIC",
                                         "creator": "Creator",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520008",
+                                        "locationLongitude": "13.404954"
                                 }
                                 """)
                         .with(csrf()))
@@ -246,7 +273,10 @@ class EventControllerTest {
                                         "location": "Location 2",
                                         "category": "ARTS",
                                         "creator": "Creator",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520009",
+                                        "locationLongitude": "13.404955"
                                 }
                                 """)
                         .with(csrf()))
@@ -263,7 +293,10 @@ class EventControllerTest {
                                         "location": "Location 3",
                                         "category": "MUSIC",
                                         "creator": "Creator",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520010",
+                                        "locationLongitude": "13.404956"
                                 }
                                 """)
                         .with(csrf()))
@@ -280,7 +313,10 @@ class EventControllerTest {
                                         "location": "Location 4",
                                         "category": "THEATRE",
                                         "creator": "Creator",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520011",
+                                        "locationLongitude": "13.404957"
                                 }
                                 """)
                         .with(csrf()))
@@ -298,7 +334,10 @@ class EventControllerTest {
                                         "location": "Location 1",
                                         "category": "MUSIC",
                                         "creator": "Creator",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520008",
+                                        "locationLongitude": "13.404954"
                              },
                              {
                                         "title": "Title 2",
@@ -308,7 +347,10 @@ class EventControllerTest {
                                         "location": "Location 2",
                                         "category": "ARTS",
                                         "creator": "Creator",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520009",
+                                        "locationLongitude": "13.404955"
                                 },
                              {
                                         "title": "Title 3",
@@ -318,7 +360,10 @@ class EventControllerTest {
                                         "location": "Location 3",
                                         "category": "MUSIC",
                                         "creator": "Creator",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520010",
+                                        "locationLongitude": "13.404956"
                              }
                          ]
                         """));
@@ -339,7 +384,10 @@ class EventControllerTest {
                                         "location": "Location 1",
                                         "category": "MUSIC",
                                         "creator": "Creator1",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520008",
+                                        "locationLongitude": "13.404954"
                                 }
                                 """)
                         .with(csrf()))
@@ -356,7 +404,10 @@ class EventControllerTest {
                                         "location": "Location 2",
                                         "category": "ARTS",
                                         "creator": "Creator2",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520009",
+                                        "locationLongitude": "13.404955"
                                 }
                                 """)
                         .with(csrf()))
@@ -373,7 +424,10 @@ class EventControllerTest {
                                         "location": "Location 3",
                                         "category": "MUSIC",
                                         "creator": "Creator2",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520010",
+                                        "locationLongitude": "13.404956"
                                 }
                                 """)
                         .with(csrf()))
@@ -390,7 +444,10 @@ class EventControllerTest {
                                         "location": "Location 4",
                                         "category": "THEATRE",
                                         "creator": "Creator1",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520011",
+                                        "locationLongitude": "13.404957"
                                 }
                                 """)
                         .with(csrf()))
@@ -408,7 +465,10 @@ class EventControllerTest {
                                         "location": "Location 1",
                                         "category": "MUSIC",
                                         "creator": "Creator1",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520008",
+                                        "locationLongitude": "13.404954"
                              },
                              {
                                         "title": "Title 4",
@@ -418,7 +478,10 @@ class EventControllerTest {
                                         "location": "Location 4",
                                         "category": "THEATRE",
                                         "creator": "Creator1",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520011",
+                                        "locationLongitude": "13.404957"
                                 }
 
                          ]
@@ -440,7 +503,10 @@ class EventControllerTest {
                                         "location": "Location 1",
                                         "category": "MUSIC",
                                         "creator": "Creator1",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520008",
+                                        "locationLongitude": "13.404954"
                                 }
                                 """)
                         .with(csrf()))
@@ -457,7 +523,10 @@ class EventControllerTest {
                                         "location": "Location 2",
                                         "category": "ARTS",
                                         "creator": "Creator2",
-                                        "status": "APPROVED"
+                                        "status": "APPROVED",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520009",
+                                        "locationLongitude": "13.404955"
                                 }
                                 """)
                         .with(csrf()))
@@ -474,7 +543,10 @@ class EventControllerTest {
                                         "location": "Location 3",
                                         "category": "MUSIC",
                                         "creator": "Creator2",
-                                        "status": "DECLINED"
+                                        "status": "DECLINED",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520010",
+                                        "locationLongitude": "13.404956"
                                 }
                                 """)
                         .with(csrf()))
@@ -491,7 +563,10 @@ class EventControllerTest {
                                         "location": "Location 4",
                                         "category": "THEATRE",
                                         "creator": "Creator1",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520011",
+                                        "locationLongitude": "13.404957"
                                 }
                                 """)
                         .with(csrf()))
@@ -509,7 +584,10 @@ class EventControllerTest {
                                         "location": "Location 1",
                                         "category": "MUSIC",
                                         "creator": "Creator1",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520008",
+                                        "locationLongitude": "13.404954"
                              },
                              {
                                         "title": "Title 4",
@@ -519,7 +597,10 @@ class EventControllerTest {
                                         "location": "Location 4",
                                         "category": "THEATRE",
                                         "creator": "Creator1",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520011",
+                                        "locationLongitude": "13.404957"
                              }
                          ]
                         """));
@@ -536,7 +617,9 @@ class EventControllerTest {
                                         "location": "Location 2",
                                         "category": "ARTS",
                                         "creator": "Creator2",
-                                        "status": "APPROVED"
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520009",
+                                        "locationLongitude": "13.404955"
                              }
                          ]
                         """));
@@ -553,7 +636,10 @@ class EventControllerTest {
                                         "location": "Location 3",
                                         "category": "MUSIC",
                                         "creator": "Creator2",
-                                        "status": "DECLINED"
+                                        "status": "DECLINED",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520010",
+                                        "locationLongitude": "13.404956"
                              }
                          ]
                         """));
@@ -596,7 +682,10 @@ class EventControllerTest {
                                         "location": "Location",
                                         "category": "MUSIC",
                                         "creator": "Creator",
-                                        "status": "NEW"
+                                        "status": "NEW",
+                                        "source": "https://www.google.com",
+                                        "locationLatitude": "52.520008",
+                                        "locationLongitude": "13.404954"
                                 }
                                 """)
                         .with(csrf()))

@@ -19,4 +19,6 @@ public class EventDTO {
     private EventStatus status;
     private String source;
     private String imageUrl;
+    private String locationLatitude;
+    private String locationLongitude;
 }
