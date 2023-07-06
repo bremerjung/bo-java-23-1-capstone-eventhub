@@ -10,5 +10,7 @@ export type EventModel = {
     status: string,
     source: string,
     image?: string,
-    imageUrl: string
+    imageUrl: string,
+    locationLatitude: number,
+    locationLongitude: number
 }

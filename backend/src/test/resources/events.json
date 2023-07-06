@@ -10,7 +10,9 @@
     "creator": "organizer@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/kultur/veranstaltungen/highlights/sommer-in-lesmona",
-    "imageUrl": "https://media.istockphoto.com/id/523871055/de/foto/weibliche-violinists-vorbereitung-klassisches-konzert.jpg?s=2048x2048&w=is&k=20&c=tMs-dzkkJe08obnlTWlJAl_jkjwYsOBnCIZ0Tc5f05M="
+    "imageUrl": "https://media.istockphoto.com/id/523871055/de/foto/weibliche-violinists-vorbereitung-klassisches-konzert.jpg?s=2048x2048&w=is&k=20&c=tMs-dzkkJe08obnlTWlJAl_jkjwYsOBnCIZ0Tc5f05M=",
+    "locationLatitude": 53.1643013,
+    "locationLongitude": 8.668574099999999
   },
   {
     "_id": "63e84a86-f8e2-4763-adff-15ace5eaa864",
@@ -23,7 +25,9 @@
     "creator": "organizer@event.hub",
     "status": "DECLINED",
     "source": "https://www.bremen.de/veranstaltung/open-campus-2023#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/3db/open-and-read-1413658.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/3db/open-and-read-1413658.jpg",
+    "locationLatitude": 53.1065412,
+    "locationLongitude": 8.8553306
   },
   {
     "_id": "8f55d410-7241-49f9-b625-d3b75115eab0",
@@ -36,7 +40,9 @@
     "creator": "organizer2@event.hub",
     "status": "NEW",
     "source": "https://www.bremen.de/veranstaltung/hoeg-citysommerfest-das-open-air-in-bremen-city#/",
-    "imageUrl": "https://media.istockphoto.com/id/1370212283/de/foto/menschenmenge-feiert-beim-live-konzert.jpg?s=2048x2048&w=is&k=20&c=NBFD8MQXkDN6ksi0JtTitMbbRpKXYJ14cFQSmNdoPKY="
+    "imageUrl": "https://media.istockphoto.com/id/1370212283/de/foto/menschenmenge-feiert-beim-live-konzert.jpg?s=2048x2048&w=is&k=20&c=NBFD8MQXkDN6ksi0JtTitMbbRpKXYJ14cFQSmNdoPKY=",
+    "locationLatitude": 53.0758155,
+    "locationLongitude": 8.8071646
   },
   {
     "_id": "7c9c0c48-bbcc-42c7-9d30-57820e013628",
@@ -49,7 +55,9 @@
     "creator": "organizer3@event.hub",
     "status": "NEW",
     "source": "https://www.bremen.de/veranstaltung/david-garrett-trio-iconic-tour-2023-seebuhne-bremen-2023#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/951/violin-1415547.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/951/violin-1415547.jpg",
+    "locationLatitude": 53.1114382,
+    "locationLongitude": 8.7482506
   },
   {
     "_id": "7b434880-f193-41e2-bc33-39c22cae02de",
@@ -62,7 +70,9 @@
     "creator": "organizer3@event.hub",
     "status": "DECLINED",
     "source": "https://www.bremen.de/veranstaltung/faust-3#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/a5f/lonely-chair-1618011.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/a5f/lonely-chair-1618011.jpg",
+    "locationLatitude": 53.0723749,
+    "locationLongitude": 8.822224799999999
   },
   {
     "_id": "f9a795dd-38c6-47b0-af44-158b46d88b30",
@@ -75,7 +85,9 @@
     "creator": "organizer3@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/geschlossene-gesellschaft#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/1ef/red-curtain-1203512.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/1ef/red-curtain-1203512.jpg",
+    "locationLatitude": 53.1073702,
+    "locationLongitude": 8.8526306
   },
   {
     "_id": "2468c842-4362-456f-ba79-ef2f43e3edfb",
@@ -88,7 +100,9 @@
     "creator": "organizer3@event.hub",
     "status": "DECLINED",
     "source": "https://www.bremen.de/veranstaltung/international-yoga-day-2023-yoga-an-der-weser#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/ffe/meditation-1306234.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/ffe/meditation-1306234.jpg",
+    "locationLatitude": 53.1690268,
+    "locationLongitude": 8.6221085
   },
   {
     "_id": "9aca5ddb-8264-45d9-8180-1826d076e49a",
@@ -101,7 +115,9 @@
     "creator": "organizer2@event.hub",
     "status": "NEW",
     "source": "https://www.bremen.de/veranstaltung/stand-up-paddling-schnupperkurs#/",
-    "imageUrl": "https://media.istockphoto.com/id/1336264959/de/foto/paddelborading.jpg?s=2048x2048&w=is&k=20&c=9A8YKLtC1TOweucXWLIYExjXWddIlf-rti2TedMruEQ="
+    "imageUrl": "https://media.istockphoto.com/id/1336264959/de/foto/paddelborading.jpg?s=2048x2048&w=is&k=20&c=9A8YKLtC1TOweucXWLIYExjXWddIlf-rti2TedMruEQ=",
+    "locationLatitude": 53.2269225,
+    "locationLongitude": 8.790036299999999
   },
   {
     "_id": "9a48671a-c646-4d5e-bfd7-04bd1faca712",
@@ -114,7 +130,9 @@
     "creator": "organizer@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/sportscheck-night-run-bremen#/",
-    "imageUrl": "https://media.istockphoto.com/id/859932820/de/foto/mann-l%C3%A4uft.jpg?s=2048x2048&w=is&k=20&c=Qztra5Z0pyg56qZ2QNChYXfjHeOlscSf1V0QlHvDxeA="
+    "imageUrl": "https://media.istockphoto.com/id/859932820/de/foto/mann-l%C3%A4uft.jpg?s=2048x2048&w=is&k=20&c=Qztra5Z0pyg56qZ2QNChYXfjHeOlscSf1V0QlHvDxeA=",
+    "locationLatitude": 53.076484,
+    "locationLongitude": 8.807447999999999
   },
   {
     "_id": "7087df26-e2da-430c-a7be-4012cebf6d1d",
@@ -127,7 +145,9 @@
     "creator": "organizer2@event.hub",
     "status": "NEW",
     "source": "https://www.bremen.de/veranstaltung/american-dreams-bilder-aus-den-usa#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/d26/vintage-camera-1-1293857.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/d26/vintage-camera-1-1293857.jpg",
+    "locationLatitude": 53.0832372,
+    "locationLongitude": 8.8110067
   },
   {
     "_id": "6d83fc42-d69a-41de-8c86-75edaed13c9a",
@@ -140,7 +160,9 @@
     "creator": "organizer2@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/auf-sicht-die-norddeutschen-realisten-malen-in-bremen#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/a0b/artist-palette-1172456.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/a0b/artist-palette-1172456.jpg",
+    "locationLatitude": 53.1689154,
+    "locationLongitude": 8.6237762
   },
   {
     "_id": "3cdc8922-d8ec-4b6b-9e15-c5aac02c098e",
@@ -153,7 +175,9 @@
     "creator": "organizer@event.hub",
     "status": "DECLINED",
     "source": "https://www.bremen.de/veranstaltung/luke-mockridge#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/325/april-fool-1443289.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/325/april-fool-1443289.jpg",
+    "locationLatitude": 53.0889429,
+    "locationLongitude": 8.8118102
   },
   {
     "_id": "a35eb448-95d2-47db-bf7c-0ab5e1c697c7",
@@ -166,7 +190,9 @@
     "creator": "organizer@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/stobern-shoppen-schmausen-kajenmarkt-2023#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/45f/marocan-lamp-fleamarket-amst-1542574.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/45f/marocan-lamp-fleamarket-amst-1542574.jpg",
+    "locationLatitude": 53.0782062,
+    "locationLongitude": 8.7991467
   },
   {
     "_id": "39f5ffca-6eb0-4b5c-b07e-85c91de7c084",
@@ -179,7 +205,9 @@
     "creator": "organizer@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/poetry-slam-landesmeisterschaften-einzelfinale#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/275/microphone-1-1620441.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/275/microphone-1-1620441.jpg",
+    "locationLatitude": 53.1113929,
+    "locationLongitude": 8.7451667
   },
   {
     "_id": "c7e3f7c8-9b3c-43c6-a437-fbe6f4a2e9dd",
@@ -192,7 +220,9 @@
     "creator": "organizer@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/peter-und-der-wolf--figurentheater-45868809#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/6df/little-beauty-1532094.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/6df/little-beauty-1532094.jpg",
+    "locationLatitude": 53.07231239999999,
+    "locationLongitude": 8.8222629
   },
   {
     "_id": "29a508d5-0e24-4ef1-90d5-c686a9c2d34f",
@@ -205,7 +235,9 @@
     "creator": "organizer@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/kicker-party-bremen#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/8bd/kicker-1639471.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/8bd/kicker-1639471.jpg",
+    "locationLatitude": 53.0617481,
+    "locationLongitude": 8.8718387
   },
   {
     "_id": "8dfc4e5a-92d6-4f43-8685-2ed660c7e168",
@@ -218,20 +250,9 @@
     "creator": "organizer@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/cinesneak-die-uberraschungspreview#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/2e7/clapper-board-1420048.jpg"
-  },
-  {
-    "_id": "6d988aad-dac6-4a7e-9a84-3006ad3c91f9",
-    "title": "American Dreams - Bilder aus den USA",
-    "description": "Foto-Ausstellung auf den Spuren des American Dreams",
-    "start": "2023-07-03T00:00:00.000+00:00",
-    "end": "2023-11-05T00:00:00.000+00:00",
-    "location": "Übersee-Museum Bremen",
-    "category": "ARTS",
-    "creator": "organizer@event.hub",
-    "status": "APPROVED",
-    "source": "https://www.bremen.de/veranstaltung/american-dreams-bilder-aus-den-usa#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/9ec/american-dream-1230328.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/2e7/clapper-board-1420048.jpg",
+    "locationLatitude": 53.0520082,
+    "locationLongitude": 8.9607071
   },
   {
     "_id": "9c556be4-6954-4f80-8dca-4e80e55f7d6c",
@@ -244,7 +265,9 @@
     "creator": "organizer@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/beo-gibbon--co-46868860#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/ff5/lar-gibbon-1369823.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/ff5/lar-gibbon-1369823.jpg",
+    "locationLatitude": 53.0934643,
+    "locationLongitude": 8.8850008
   },
   {
     "_id": "b11b3583-1fb4-4084-94f4-729ee8e2e924",
@@ -257,7 +280,9 @@
     "creator": "organizer@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/basic-barista-workshop#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/f41/heart-shaped-coffeee-1637963.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/f41/heart-shaped-coffeee-1637963.jpg",
+    "locationLatitude": 53.0849971,
+    "locationLongitude": 8.7917764
   },
   {
     "_id": "f0ad58af-3a79-43f9-a344-13b2425e49e9",
@@ -270,7 +295,9 @@
     "creator": "organizer@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/fury-in-the-slaughterhouse-hope-open-air-tour-2023#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/976/drummer-1171338.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/976/drummer-1171338.jpg",
+    "locationLatitude": 53.1113929,
+    "locationLongitude": 8.7451667
   },
   {
     "_id": "5a7e7b7f-642a-4a7b-aed0-4d0fd2f3c30e",
@@ -283,7 +310,9 @@
     "creator": "organizer2@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/bernd-stelter-hurra-ab-montag-ist-wieder-wochenende#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/a35/new-year-1634049.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/a35/new-year-1634049.jpg",
+    "locationLatitude": 53.1113929,
+    "locationLongitude": 8.7451667
   },
   {
     "_id": "55c9db5b-4ed7-4ea0-bf1e-44b4f6f66a47",
@@ -296,7 +325,9 @@
     "creator": "organizer2@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/die-bremer-stadtmusikanten-am-marcusbrunnen-8#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/56b/farm-animals-1-1362791.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/56b/farm-animals-1-1362791.jpg",
+    "locationLatitude": 53.0905825,
+    "locationLongitude": 8.8200041
   },
   {
     "_id": "9134bbdb-aa3a-4e0b-b6a3-7979b49b6da3",
@@ -309,7 +340,9 @@
     "creator": "organizer2@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/bremen-city-minigolf-1#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/094/putt-putt-1527466.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/094/putt-putt-1527466.jpg",
+    "locationLatitude": 53.0782062,
+    "locationLongitude": 8.7991467
   },
   {
     "_id": "7e8bdef9-4456-4a3d-86df-5549632aeb5f",
@@ -322,7 +355,9 @@
     "creator": "organizer2@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/leise-landschaften#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/47b/paintings-1230076.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/47b/paintings-1230076.jpg",
+    "locationLatitude": 53.1689154,
+    "locationLongitude": 8.6237762
   },
   {
     "_id": "db8a327a-79b1-4e9d-8b69-8fb8e7f71ad4",
@@ -335,7 +370,9 @@
     "creator": "organizer2@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/wildkrauter-kurs#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/011/herbs-and-natural-spice-ii-1632387.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/011/herbs-and-natural-spice-ii-1632387.jpg",
+    "locationLatitude": 53.2005038,
+    "locationLongitude": 8.9390241
   },
   {
     "_id": "72fb5dc0-8050-4be7-af63-45e4086d8304",
@@ -348,7 +385,9 @@
     "creator": "organizer2@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/weiterbildung-webdesign--webprogrammierung-46880318#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/252/laptop-and-cellphone-1236639.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/252/laptop-and-cellphone-1236639.jpg",
+    "locationLatitude": 53.083078,
+    "locationLongitude": 8.788909199999999
   },
   {
     "_id": "c7540dbf-0d0d-4f26-a17a-c9d171ff3e37",
@@ -361,7 +400,9 @@
     "creator": "organizer2@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/kultur/musik-und-konzerte/festivals/nordsandfestival",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/e5c/guitarist-1155888.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/e5c/guitarist-1155888.jpg",
+    "locationLatitude": 53.11273320000001,
+    "locationLongitude": 8.8391655
   },
   {
     "_id": "30bbed16-1c56-4e3b-99a0-d0e9ce7d5eab",
@@ -374,7 +415,9 @@
     "creator": "organizer2@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/eltern-kind-treff-findorff#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/904/lola-1437841.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/904/lola-1437841.jpg",
+    "locationLatitude": 53.0945547,
+    "locationLongitude": 8.8093325
   },
   {
     "_id": "670a2a7f-7c11-4b2f-a22e-3d297a3487f5",
@@ -387,6 +430,8 @@
     "creator": "organizer2@event.hub",
     "status": "APPROVED",
     "source": "https://www.bremen.de/veranstaltung/pflanzentauschborse#/",
-    "imageUrl": "https://images.freeimages.com/images/large-previews/d32/pink-flower-bed-1641596.jpg"
+    "imageUrl": "https://images.freeimages.com/images/large-previews/d32/pink-flower-bed-1641596.jpg",
+    "locationLatitude": 53.1407788,
+    "locationLongitude": 8.913604399999999
   }
 ]

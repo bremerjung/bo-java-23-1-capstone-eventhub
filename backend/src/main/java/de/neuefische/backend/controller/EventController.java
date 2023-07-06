@@ -32,6 +32,8 @@ public class EventController {
                 .status(event.getStatus())
                 .source(event.getSource())
                 .imageUrl(event.getImageUrl())
+                .locationLatitude(event.getLocationLatitude())
+                .locationLongitude(event.getLocationLongitude())
                 .build();
         return eventService.saveEvent(newEvent);
     }
@@ -74,6 +76,8 @@ public class EventController {
                 .status(event.getStatus())
                 .source(event.getSource())
                 .imageUrl(event.getImageUrl())
+                .locationLatitude(event.getLocationLatitude())
+                .locationLongitude(event.getLocationLongitude())
                 .build();
         return eventService.updateEvent(id, updatedEvent);
     }

@@ -6,6 +6,7 @@ import Tab from "react-bootstrap/Tab";
 import {Container} from "react-bootstrap";
 import EventGallery from "./EventGallery";
 import EventCarousel from "./EventCarousel";
+import EventMap from "./EventMap";
 
 type Props = {
     user: User | undefined,
@@ -58,8 +59,11 @@ function EventViewSelection(props: Props) {
                                    setActiveEventFilter={setActiveEventFilter}/>
                 </Tab>
 
-                <Tab eventKey="Map" title="Map">
-                    Map View
+                <Tab eventKey="Map" title="Map" mountOnEnter>
+                    <EventMap events={props.events}
+                              onAllEventsClickHandler={onAllEventsClickHandler}
+                              onMyEventsClickHandler={onMyEventsClickHandler} activeEventFilter={activeEventFilter}
+                              setActiveEventFilter={setActiveEventFilter}/>
                 </Tab>
             </Tabs>
         </div>

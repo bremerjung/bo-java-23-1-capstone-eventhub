@@ -30,6 +30,8 @@ function EventForm(props: Props) {
     const [description, setDescription] = useState('');
     const [startDate, setStartDate] = useState('');
     const [location, setLocation] = useState('');
+    const [locationLatitude, setLocationLatitude] = useState<number>(0);
+    const [locationLongitude, setLocationLongitude] = useState<number>(0);
     const [category, setCategory] = useState('');
     const [source, setSource] = useState('');
     const [image, setImage] = useState<File | null>(null);
@@ -42,8 +44,11 @@ function EventForm(props: Props) {
             setDescription(foundEvent.description);
             setStartDate(foundEvent.start.slice(0, 16));
             setLocation(foundEvent.location);
+            setLocationLatitude(foundEvent.locationLatitude);
+            setLocationLongitude(foundEvent.locationLongitude)
             setCategory(foundEvent.category);
             setSource(foundEvent.source);
+
         } else {
             setFormMode(FormMode.ADD);
         }
@@ -58,6 +63,8 @@ function EventForm(props: Props) {
             description: description,
             start: `${startDate}:00.000+00:00`,
             location: location,
+            locationLatitude: locationLatitude,
+            locationLongitude: locationLongitude,
             category: category,
             creator: props.user?.username ?? '',
             status: 'NEW',
@@ -151,6 +158,26 @@ function EventForm(props: Props) {
                                 onChange={(e: ChangeEvent<HTMLInputElement>) => setLocation(e.target.value)}
                             />
                         </Form.Group>
+                        <Form.Group className="mb-3" controlId="formLocationLatitude">
+                            <Form.Label>Location latitude</Form.Label>
+                            <Form.Control
+                                required
+                                type="number"
+                                placeholder="Enter location latitude"
+                                value={locationLatitude}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => setLocationLatitude(parseFloat(e.target.value))}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formLocationLongitude">
+                            <Form.Label>Location longitude</Form.Label>
+                            <Form.Control
+                                required
+                                type="number"
+                                placeholder="Enter location longitude"
+                                value={locationLongitude}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => setLocationLongitude(parseFloat(e.target.value))}
+                            />
+                        </Form.Group>
                         <Form.Group className="mb-3" controlId="formCategory">
                             <Form.Label>Category</Form.Label>
                             <Form.Select
@@ -180,7 +207,7 @@ function EventForm(props: Props) {
                         </Form.Group>
                         <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label>Event poster upload</Form.Label>
-                            <Form.Control required type="file" placeholder="Enter event location"
+                            <Form.Control type="file" placeholder="Enter event location"
                                           onChange={onChangeHandlerImage}/>
                         </Form.Group>
                         <Row className="mt-3">

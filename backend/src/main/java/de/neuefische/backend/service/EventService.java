@@ -54,6 +54,9 @@ public class EventService {
         eventToUpdate.setCategory(event.getCategory());
         eventToUpdate.setCreator(event.getCreator());
         eventToUpdate.setStatus(event.getStatus());
+        eventToUpdate.setSource(event.getSource());
+        eventToUpdate.setLocationLatitude(event.getLocationLatitude());
+        eventToUpdate.setLocationLongitude(event.getLocationLongitude());
         return eventRepository.save(eventToUpdate);
     }
 
