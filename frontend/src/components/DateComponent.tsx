@@ -6,7 +6,7 @@ type Props = {
 }
 
 function DateComponent(props: Props) {
-    const formattedDate = moment(props.date).format('MMMM Do, h:mm:ss a');
+    const formattedDate = moment(props.date).format('MMMM Do, h:mm a');
 
     return (
         <div>{formattedDate}</div>

@@ -4,6 +4,7 @@ import {EventModel} from "../model/EventModel";
 import DateComponent from "./DateComponent";
 import CategoryIcon from "./CategoryIcon";
 import "./EventCard.css"
+import {Link} from "react-router-dom";
 
 type Props = {
     event: EventModel
@@ -26,7 +27,7 @@ function EventCard(props: Props) {
             </Card.Header>
             <Card.Img variant="top" src={renderEventImage(props.event)} className="card-img-top"/>
             <Card.Body>
-                <Card.Title>{props.event.title}</Card.Title>
+                <Card.Title><Link to={`/events/${props.event.id}`}>{props.event.title}</Link></Card.Title>
                 <Card.Subtitle className="text-truncate">{props.event.location}</Card.Subtitle>
                 <Card.Text className="text-truncate">
                     {props.event.description}
