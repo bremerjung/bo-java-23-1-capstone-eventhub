@@ -6,10 +6,10 @@ import {
     faCalendar,
     faCheckCircle,
     faCog,
-    faFileInvoice,
     faImages,
     faList,
-    faSignOutAlt
+    faSignOutAlt,
+    faStar
 } from "@fortawesome/free-solid-svg-icons";
 import {User} from "../model/User";
 
@@ -22,7 +22,7 @@ type Props = {
 function Header(props: Props) {
     return (
         <header className="App-header p-1 m-1">
-            <h4>Event Hub <FontAwesomeIcon className="m-1" icon={faFileInvoice} size="sm"/> Die digitale Litfaßsäule
+            <h4>Event Hub <FontAwesomeIcon className="m-1" icon={faStar} size="sm"/> Die digitale Litfaßsäule
             </h4>
             {props.areNavLinksVisible && (
                 <Navbar variant="dark" collapseOnSelect>
@@ -81,7 +81,7 @@ function Header(props: Props) {
                         </Col>
                         <Col>
                             {props.user !== undefined ?
-                                <Button className="button mx-2" onClick={props.logout}><FontAwesomeIcon
+                                <Button variant="dark" className="menuLink" onClick={props.logout}><FontAwesomeIcon
                                     icon={faSignOutAlt} size="lg"/></Button> : <></>}
                         </Col>
                     </Container>
