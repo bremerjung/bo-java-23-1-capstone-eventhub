@@ -110,6 +110,15 @@ function EventForm(props: Props) {
         }
     }
 
+    function handleLocationBlur() {
+        axios.get(`https://nominatim.openstreetmap.org/search?q=${location}&format=json&limit=1`)
+            .then(response => {
+                setLocationLatitude(parseFloat(response.data[0].lat))
+                setLocationLongitude(parseFloat(response.data[0].lon))
+            })
+            .catch(error => console.log(error.message));
+    }
+
     function onCloseHandler() {
         navigate("/add")
     }
@@ -156,6 +165,7 @@ function EventForm(props: Props) {
                                 placeholder="Enter event location"
                                 value={location}
                                 onChange={(e: ChangeEvent<HTMLInputElement>) => setLocation(e.target.value)}
+                                onBlur={handleLocationBlur}
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formLocationLatitude">
