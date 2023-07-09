@@ -82,7 +82,7 @@ function Header(props: Props) {
 
                                     {(isAdmin(props.user) || isEditor(props.user)) && (<OverlayTrigger
                                         placement="bottom"
-                                        overlay={<Tooltip id="approve-tooltip">Editor Area</Tooltip>}
+                                        overlay={<Tooltip id="approve-tooltip">Approval</Tooltip>}
                                     >
                                         <Nav.Link as={Link} className="menuLink" to="/approve">
                                             <FontAwesomeIcon icon={faCheckCircle} size="lg"/>
