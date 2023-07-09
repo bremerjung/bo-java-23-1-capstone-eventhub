@@ -4,6 +4,7 @@ import {MapContainer, Marker, TileLayer} from 'react-leaflet';
 import L, {Icon} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import EventMapDetailsPopup from "./EventMapDetailsPopup";
+import EventFilter from "./EventFilter";
 
 type Props = {
     events: EventModel[],
@@ -22,6 +23,9 @@ function EventMap(props: Props) {
 
     return (
         <div style={{height: '60vh'}}>
+            <EventFilter onAllEventsClickHandler={props.onAllEventsClickHandler}
+                         onMyEventsClickHandler={props.onMyEventsClickHandler}
+                         activeEventFilter={props.activeEventFilter} setActiveEventFilter={props.setActiveEventFilter}/>
             <MapContainer
                 center={defaultCoordinates}
                 zoom={10}
