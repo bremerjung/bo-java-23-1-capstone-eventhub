@@ -22,9 +22,10 @@ import EventViewSelection from "./components/EventViewSelection";
 function App() {
 
     const [areNavLinksVisible, setAreNavLinksVisible] = useState(false);
-    const {user, register, login, logout, updateUserPreferredCategories} = useUser();
+    const {user, register, login, logout, updateUserPreferredCategories, currentUserLocation} = useUser();
     const {
         events,
+        setEvents,
         getAllEvents,
         getEventsByCategory,
         getEventsByCreator,
@@ -68,14 +69,16 @@ function App() {
                 pauseOnHover
                 theme="dark"
             />
-            <Header user={user} logout={logout} areNavLinksVisible={areNavLinksVisible}/>
+            <Header user={user} userLocation={currentUserLocation} logout={logout}
+                    areNavLinksVisible={areNavLinksVisible}/>
             <main className="App-main">
                 <Routes>
                     <Route path={"/"} element={<Home login={login} register={register}/>}/>
 
                     <Route element={<ProtectedRoutesUser/>}>
                         <Route path="/eventViewSelection"
-                               element={<EventViewSelection user={user} events={events}
+                               element={<EventViewSelection user={user} userLocation={currentUserLocation}
+                                                            events={events} setEvents={setEvents}
                                                             getEventsByStatus={getEventsByStatus}
                                                             getEventsByCategory={getEventsByCategory}/>}/>
                         <Route path="/events/:id" element={<EventDetails events={events}/>}/>

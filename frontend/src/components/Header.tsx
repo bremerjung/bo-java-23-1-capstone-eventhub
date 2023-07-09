@@ -12,14 +12,35 @@ import {
     faStar
 } from "@fortawesome/free-solid-svg-icons";
 import {User} from "../model/User";
+import {UserLocation} from "../model/UserLocation";
 
 type Props = {
     user: User | undefined,
+    userLocation: UserLocation | undefined,
     logout: () => Promise<void>,
     areNavLinksVisible: boolean
 }
 
 function Header(props: Props) {
+
+    function isAdmin(user: User | undefined) {
+        if (user) {
+            return user.roles.includes('admin');
+        }
+    }
+
+    function isOrganizer(user: User | undefined) {
+        if (user) {
+            return user.roles.includes('organizer');
+        }
+    }
+
+    function isEditor(user: User | undefined) {
+        if (user) {
+            return user.roles.includes('editor');
+        }
+    }
+
     return (
         <header className="App-header p-1 m-1">
             <h4>Event Hub <FontAwesomeIcon className="m-1" icon={faStar} size="sm"/> Die digitale Litfaßsäule
@@ -41,32 +62,32 @@ function Header(props: Props) {
                                         </Nav.Link>
                                     </OverlayTrigger>
 
-                                    <OverlayTrigger
+                                    {isAdmin(props.user) && (<OverlayTrigger
                                         placement="bottom"
                                         overlay={<Tooltip id="administration-tooltip">Administration</Tooltip>}
                                     >
                                         <Nav.Link as={Link} className="menuLink" to="/administration">
                                             <FontAwesomeIcon icon={faCog} size="lg"/>
                                         </Nav.Link>
-                                    </OverlayTrigger>
+                                    </OverlayTrigger>)}
 
-                                    <OverlayTrigger
+                                    {(isAdmin(props.user) || isOrganizer(props.user)) && (<OverlayTrigger
                                         placement="bottom"
                                         overlay={<Tooltip id="add-tooltip">Event Management</Tooltip>}
                                     >
                                         <Nav.Link as={Link} className="menuLink" to="/add">
                                             <FontAwesomeIcon icon={faCalendar} size="lg"/>
                                         </Nav.Link>
-                                    </OverlayTrigger>
+                                    </OverlayTrigger>)}
 
-                                    <OverlayTrigger
+                                    {(isAdmin(props.user) || isEditor(props.user)) && (<OverlayTrigger
                                         placement="bottom"
                                         overlay={<Tooltip id="approve-tooltip">Editor Area</Tooltip>}
                                     >
                                         <Nav.Link as={Link} className="menuLink" to="/approve">
                                             <FontAwesomeIcon icon={faCheckCircle} size="lg"/>
                                         </Nav.Link>
-                                    </OverlayTrigger>
+                                    </OverlayTrigger>)}
 
                                     <OverlayTrigger
                                         placement="bottom"
@@ -81,8 +102,14 @@ function Header(props: Props) {
                         </Col>
                         <Col>
                             {props.user !== undefined ?
-                                <Button variant="dark" className="menuLink" onClick={props.logout}><FontAwesomeIcon
-                                    icon={faSignOutAlt} size="lg"/></Button> : <></>}
+                                <OverlayTrigger
+                                    placement="bottom"
+                                    overlay={<Tooltip id="logged-in-user-tooltip">
+                                        <div>{props.user.username}</div>
+                                        <div>{props.userLocation?.lat} {props.userLocation?.lng}</div>
+                                    </Tooltip>}
+                                ><Button variant="dark" className="menuLink" onClick={props.logout}><FontAwesomeIcon
+                                    icon={faSignOutAlt} size="lg"/></Button></OverlayTrigger> : <></>}
                         </Col>
                     </Container>
                 </Navbar>
