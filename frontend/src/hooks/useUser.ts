@@ -5,15 +5,18 @@ import {toast} from 'react-toastify';
 import {useNavigate} from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import getStoredUser from "../components/utils/getStoredUser";
+import {UserLocation} from "../model/UserLocation";
 
 export default function useUser() {
 
     const [user, setUser] = useState<User | undefined>(undefined);
     const [users, setUsers] = useState<User[]>([])
+    const [currentUserLocation, setCurrentUserLocation] = useState<UserLocation>({lat: 0, lng: 0})
     const navigate = useNavigate();
 
     useEffect(() => {
         setUser(getStoredUser());
+        getUserLocation();
     }, []);
 
     function register(username: string, password: string) {
@@ -87,6 +90,30 @@ export default function useUser() {
             .catch(error => console.log(error.message))
     }
 
-    return {user, users, register, login, logout, updateUserPreferredCategories, getAllUsers, updateUserRole};
+    const getUserLocation = () => {
+        // SONARQUBE_IGNORE_START
+        // The use of geolocation is necessary for this functionality.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                setCurrentUserLocation({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                })
+            })
+        }
+        // SONARQUBE_IGNORE_END
+    }
+
+    return {
+        user,
+        users,
+        register,
+        login,
+        logout,
+        updateUserPreferredCategories,
+        getAllUsers,
+        updateUserRole,
+        currentUserLocation
+    };
 
 }

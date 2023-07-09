@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {User} from "../model/User";
 import './PreferredEventCategorySelection.css';
-import getStoredUser from "./utils/getStoredUser";
 import {Button, Form} from "react-bootstrap";
 
 type Props = {
@@ -11,7 +10,13 @@ type Props = {
 }
 
 function PreferredEventCategorySelection(props: Props) {
-    const [selectedCategories, setSelectedCategories] = useState<string[]>(getStoredUser()?.preferredCategories ?? []);
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+    useEffect(() => {
+            setSelectedCategories(props.user?.preferredCategories ?? [])
+            console.log("test")
+        }, []
+    )
 
     const isCategorySelected = (category: string) => {
         return selectedCategories.includes(category);

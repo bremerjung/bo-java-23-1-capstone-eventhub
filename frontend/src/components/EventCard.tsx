@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card} from "react-bootstrap";
+import {Card, ListGroup} from "react-bootstrap";
 import {EventModel} from "../model/EventModel";
 import DateComponent from "./DateComponent";
 import CategoryIcon from "./CategoryIcon";
@@ -7,7 +7,8 @@ import "./EventCard.css"
 import {Link} from "react-router-dom";
 
 type Props = {
-    event: EventModel
+    event: EventModel,
+    distance?: number
 }
 
 function EventCard(props: Props) {
@@ -33,12 +34,15 @@ function EventCard(props: Props) {
                     {props.event.description}
                 </Card.Text>
             </Card.Body>
-            {/*<ListGroup className="list-group-flush">
-                <ListGroup.Item>{props.event.location}</ListGroup.Item>
-            </ListGroup>*/}
+            <ListGroup className="list-group-flush">
+                {props.distance && (
+                    <ListGroup.Item>
+                        Distance: {props.distance} km
+                    </ListGroup.Item>
+                )}
+            </ListGroup>
             <Card.Body>
                 <Card.Link href={props.event.source} target="_blank">Source Link</Card.Link>
-                <Card.Link href="#">Another Link</Card.Link>
             </Card.Body>
             <Card.Footer className="text-muted">{props.event.creator}</Card.Footer>
         </Card>

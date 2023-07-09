@@ -7,10 +7,13 @@ import {Container} from "react-bootstrap";
 import EventGallery from "./EventGallery";
 import EventCarousel from "./EventCarousel";
 import EventMap from "./EventMap";
+import {UserLocation} from "../model/UserLocation";
 
 type Props = {
     user: User | undefined,
+    userLocation: UserLocation | undefined,
     events: EventModel[],
+    setEvents: (events: EventModel[]) => void,
     getEventsByStatus: (status: string) => void,
     getEventsByCategory: (categories: string[]) => void
 }
@@ -44,7 +47,8 @@ function EventViewSelection(props: Props) {
             >
                 <Tab eventKey="Cards" title="Cards">
                     <Container>
-                        <EventGallery events={props.events}
+                        <EventGallery events={props.events} setEvents={props.setEvents}
+                                      userLocation={props.userLocation}
                                       onAllEventsClickHandler={onAllEventsClickHandler}
                                       onMyEventsClickHandler={onMyEventsClickHandler}
                                       activeEventFilter={activeEventFilter}

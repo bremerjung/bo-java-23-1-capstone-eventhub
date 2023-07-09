@@ -23,7 +23,7 @@
   },
   {
     "_id": "3",
-    "username": "editor@event.hub",
+    "username": "curator@event.hub",
     "password": "$argon2id$v=19$m=16384,t=2,p=1$FZWd9zGHHzUe3u7wIAEXWw$V4KxHAocc+whBXWSc81N6kVVoy1h0tkXvFnFs4M2UtM",
     "roles": [
       {
