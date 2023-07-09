@@ -14,7 +14,7 @@ function PreferredEventCategorySelection(props: Props) {
 
     useEffect(() => {
             setSelectedCategories(props.user?.preferredCategories ?? [])
-            console.log("test")
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []
     )
 
