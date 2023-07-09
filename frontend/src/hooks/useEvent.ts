@@ -10,7 +10,7 @@ export default function useEvent() {
     function getAllEvents(): Promise<EventModel[]> {
         return axios.get("/api/event")
             .then(response => {
-                setEvents(response.data);
+                setEvents(getSortedEvents(response.data));
                 return response.data;
             })
             .catch(error => {
@@ -21,7 +21,7 @@ export default function useEvent() {
 
     function getEventsByStatus(status: string = "NEW") {
         axios.get(`/api/event/status/${status}`)
-            .then(response => setEvents(response.data))
+            .then(response => setEvents(getSortedEvents(response.data)))
             .catch(error => {
                 console.log(error.message);
             })
@@ -30,8 +30,11 @@ export default function useEvent() {
     function getEventsByCategory(categories: string[]) {
         const queryParams = categories.join(',');
         return axios
-            .get("/api/event/byCategories", { params: { categories: queryParams } })
-            .then((response) => setEvents(response.data))
+            .get("/api/event/byCategories", {params: {categories: queryParams}})
+            .then((response) => {
+                const approvedEvents = response.data.filter((currentEvent: EventModel) => currentEvent.status === "APPROVED");
+                setEvents(getSortedEvents(approvedEvents))
+            })
             .catch((error) => {
                 console.log(error.message);
             });
@@ -39,7 +42,7 @@ export default function useEvent() {
 
     function getEventsByCreator(creator: string) {
         axios.get(`/api/event/creator/${creator}`)
-            .then(response => setEvents(response.data))
+            .then(response => setEvents(getSortedEvents(response.data)))
             .catch(error => {
                 console.log(error.message);
             })
@@ -77,7 +80,22 @@ export default function useEvent() {
             .catch(error => console.log(error.message))
     }
 
-    return {events, setEvents, getAllEvents, getEventsByStatus, getEventsByCategory, getEventsByCreator, saveEvent, updateEvent, deleteEvent,
-        categories, getAllCategories}
+    function getSortedEvents(unsortedEvents: EventModel[]) {
+        return unsortedEvents.sort((a: EventModel, b: EventModel) => new Date(a.start).getTime() - new Date(b.start).getTime());
+    }
+
+    return {
+        events,
+        setEvents,
+        getAllEvents,
+        getEventsByStatus,
+        getEventsByCategory,
+        getEventsByCreator,
+        saveEvent,
+        updateEvent,
+        deleteEvent,
+        categories,
+        getAllCategories
+    }
 
 }
