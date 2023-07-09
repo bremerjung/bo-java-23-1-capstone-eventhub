@@ -92,12 +92,14 @@ export default function useUser() {
 
     const getUserLocation = () => {
         if (navigator.geolocation) {
+            // SONAR-OFF: The use of geolocation is necessary for this functionality.
             navigator.geolocation.getCurrentPosition((position) => {
                 setCurrentUserLocation({
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 })
             })
+            // SONAR-ON
         }
     }
 
