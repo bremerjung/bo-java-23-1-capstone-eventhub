@@ -91,8 +91,6 @@ export default function useUser() {
     }
 
     const getUserLocation = () => {
-        // SONARQUBE_IGNORE_START
-        // The use of geolocation is necessary for this functionality.
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
                 setCurrentUserLocation({
@@ -101,7 +99,6 @@ export default function useUser() {
                 })
             })
         }
-        // SONARQUBE_IGNORE_END
     }
 
     return {
